@@ -97,6 +97,7 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | OD-009 | 2026-07-21 | **RESOLVED** | Validation logic in `packages/core`. `packages/cli` contains only the CLI wrapper for `harness validate-docs`. M2 does not depend on the final Harness CLI. | M2, M6 | Human review 2026-07-21 |
 | PLAN-001 | 2026-07-21 | **RESOLVED** | 17 milestones (M0–M16). **One milestone = one independently verifiable outcome.** A milestone may use one or more small, reviewable, reversible PRs. Do not force a total PR count before evidence exists. | All | Human review 2026-07-21 |
 | PLAN-002 | 2026-07-21 | **ACTIVE** | Interim validation ladder per phase; see [Interim validation ladder](#interim-validation-ladder). | M0–M16 | Agent |
+| PLAN-003 | 2026-07-22 | **RESOLVED** | ExecPlan approved for implementation. M0 monorepo scaffold complete; active milestone is M1. | M0–M16 | Independent review 2026-07-22 |
 
 ---
 
@@ -147,7 +148,7 @@ when `harness init` reaches **HARNESS_INSTALLED** (OD-006).
 | --- | --- |
 | Canonical docs (AGENTS.md, ARCHITECTURE.md, docs/**) | **IMPLEMENTED** |
 | Product specs and design docs | **IMPLEMENTED** (approved, not verified against code) |
-| This ExecPlan | **IMPLEMENTED** (revised; awaiting human approval before M0) |
+| This ExecPlan | **IMPLEMENTED** (approved 2026-07-22; see PLAN-003) |
 | Monorepo scaffold (`pnpm`, `packages/*`) | **IMPLEMENTED** (M0; local `pnpm -r build/test` green) |
 | Universal Core | **APPROVED, NOT IMPLEMENTED** |
 | Docs/ExecPlan validation library (`packages/core`) | **APPROVED, NOT IMPLEMENTED** |
@@ -1877,9 +1878,9 @@ findings:
 5. Create worktree for next milestone; implement only that milestone's catalog section (one proposed internal PR at a time).
 6. Update Progress, Decision Log, and Surprises before opening each PR.
 7. Do not combine two milestone outcomes in one PR.
-8. **Do not start M0 until human approval** of this ExecPlan is recorded.
+8. ExecPlan approval is recorded in PLAN-003. Do not start a milestone until the prior milestone's validation passes on `main`.
 
-**Implementation status:** NOT STARTED (docs-only repository; no `packages/` yet).
+**Implementation status:** M0 complete (pnpm monorepo scaffold; five package stubs). **Active milestone:** M1 Universal Core.
 
 **Documentation consulted (plan authoring):** listed in Context and Orientation.  
 **Invariants applied (plan authoring):** listed in Context and Orientation.
