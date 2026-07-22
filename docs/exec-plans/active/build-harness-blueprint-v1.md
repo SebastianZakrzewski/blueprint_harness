@@ -41,12 +41,12 @@ production access, and a frontend for this Blueprint repository itself
 
 ## Progress
 
-Last updated: 2026-07-22 (M0 complete)
+Last updated: 2026-07-23 (M1 complete)
 
 | Milestone | Proposed PRs | Status | Notes |
 | --- | --- | --- | --- |
-| M0 Monorepo scaffold | 1+ small PRs | `[x]` complete | pnpm workspace + 5 package stubs; Vitest smoke tests |
-| M1 Universal Core | 1+ small PRs | `[ ]` remaining | |
+| M0 Monorepo scaffold | 1+ small PRs | `[x]` complete | pnpm workspace + 5 package stubs; Vitest smoke tests; [PR #1](https://github.com/SebastianZakrzewski/blueprint_harness/pull/1) |
+| M1 Universal Core | 1+ small PRs | `[x]` complete | Core contracts in `packages/core`; 23 unit tests; [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
 | M2 Docs and ExecPlan validation | 1+ small PRs | `[ ]` remaining | Core only; no CLI dependency |
 | M3 OpenAI Repository Template | 1+ small PRs | `[ ]` remaining | |
 | M4 Cursor adapter | 1+ small PRs | `[ ]` remaining | |
@@ -63,7 +63,7 @@ Last updated: 2026-07-22 (M0 complete)
 | M15 Upgrade Engine | 1+ small PRs | `[ ]` remaining | |
 | M16 Reference validation and V1 gate | 3 proposed internal PRs | `[ ]` remaining | See M16 PR boundaries |
 
-**Active milestone:** M1 Universal Core.
+**Active milestone:** M2 Docs and ExecPlan validation.
 
 **Blocked:** none for local V1 implementation. OD-001 blocks npm publication only.
 OD-003 blocks **completion** of M13 until version pins are recorded.
@@ -98,6 +98,8 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | PLAN-001 | 2026-07-21 | **RESOLVED** | 17 milestones (M0–M16). **One milestone = one independently verifiable outcome.** A milestone may use one or more small, reviewable, reversible PRs. Do not force a total PR count before evidence exists. | All | Human review 2026-07-21 |
 | PLAN-002 | 2026-07-21 | **ACTIVE** | Interim validation ladder per phase; see [Interim validation ladder](#interim-validation-ladder). | M0–M16 | Agent |
 | PLAN-003 | 2026-07-22 | **RESOLVED** | ExecPlan approved for implementation. M0 monorepo scaffold complete; active milestone is M1. | M0–M16 | Independent review 2026-07-22 |
+| PLAN-004 | 2026-07-23 | **RESOLVED** | M1 Universal Core merged on `main` (`7d059e0`). Gate: `pnpm --filter @blueprint-harness/core test` (23/23). | M1 | [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
+| PLAN-005 | 2026-07-23 | **DEFERRED** | `ValidationResult.ok` vs `findings` relationship undefined in canonical docs. M1 schema keeps fields independent; M2 `validate-docs` producers must set semantics before shipping. | M2 | Agent; resolve at M2 start |
 
 ---
 
@@ -120,9 +122,9 @@ At closure, record:
 ### What this repository is today
 
 The **Harness Blueprint** central repository contains canonical documentation
-plus a **pnpm + TypeScript monorepo scaffold** (M0). Executable harness logic,
-CLI commands, and CI workflows are not yet implemented. Product and design
-specifications remain **APPROVED / NOT_VERIFIED**.
+plus a **pnpm + TypeScript monorepo** with **Universal Core contracts** in
+`packages/core` (M1). CLI commands and CI workflows are not yet implemented.
+Product and design specifications remain **APPROVED / NOT_VERIFIED**.
 
 ### What V1 must become
 
@@ -150,7 +152,7 @@ when `harness init` reaches **HARNESS_INSTALLED** (OD-006).
 | Product specs and design docs | **IMPLEMENTED** (approved, not verified against code) |
 | This ExecPlan | **IMPLEMENTED** (approved 2026-07-22; see PLAN-003) |
 | Monorepo scaffold (`pnpm`, `packages/*`) | **IMPLEMENTED** (M0; local `pnpm -r build/test` green) |
-| Universal Core | **APPROVED, NOT IMPLEMENTED** |
+| Universal Core | **IMPLEMENTED** (M1; `pnpm --filter @blueprint-harness/core test` 23/23) |
 | Docs/ExecPlan validation library (`packages/core`) | **APPROVED, NOT IMPLEMENTED** |
 | OpenAI Repository Template | **APPROVED, NOT IMPLEMENTED** |
 | Cursor adapter | **APPROVED, NOT IMPLEMENTED** |
@@ -1880,7 +1882,7 @@ findings:
 7. Do not combine two milestone outcomes in one PR.
 8. ExecPlan approval is recorded in PLAN-003. Do not start a milestone until the prior milestone's validation passes on `main`.
 
-**Implementation status:** M0 complete (pnpm monorepo scaffold; five package stubs). **Active milestone:** M1 Universal Core.
+**Implementation status:** M1 complete (Universal Core contracts in `packages/core`). **Active milestone:** M2 Docs and ExecPlan validation.
 
 **Documentation consulted (plan authoring):** listed in Context and Orientation.  
 **Invariants applied (plan authoring):** listed in Context and Orientation.
