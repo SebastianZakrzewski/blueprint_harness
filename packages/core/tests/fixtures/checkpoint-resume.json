@@ -1,0 +1,24 @@
+{
+  "checkpoints": [
+    {
+      "state": "DISCOVERED",
+      "evidence": {
+        "inputsChecksum": "sha256:discovered-in",
+        "outputsChecksum": "sha256:discovered-out"
+      },
+      "recordedAt": "2026-07-23T00:00:00.000Z"
+    },
+    {
+      "state": "DOCS_MAPPED",
+      "evidence": {
+        "inputsChecksum": "sha256:mapped-in",
+        "outputsChecksum": "sha256:mapped-out",
+        "resolvedDecisions": {
+          "profile": "typescript-node"
+        }
+      },
+      "recordedAt": "2026-07-23T00:01:00.000Z"
+    }
+  ],
+  "resumeState": "DOCS_MAPPED"
+}
