@@ -7,12 +7,13 @@
   },
   "scripts": {
     "build": "pnpm -r build",
-    "test": "pnpm -r test",
+    "test": "pnpm -r test && vitest run --config vitest.config.ts",
     "lint": "echo lint stub",
     "harness": "pnpm --filter @blueprint-harness/cli exec harness"
   },
   "devDependencies": {
     "@blueprint-harness/cli": "workspace:*",
+    "@blueprint-harness/core": "workspace:*",
     "@types/node": "^22.15.21",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
