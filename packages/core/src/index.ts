@@ -25,6 +25,7 @@ export {
 
 export {
   ValidationResultParseError,
+  buildValidationResult,
   deserializeValidationResult,
   hasBlockingFindings,
   parseFinding,

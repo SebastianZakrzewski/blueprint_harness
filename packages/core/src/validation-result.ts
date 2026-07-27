@@ -17,11 +17,9 @@ export interface Finding {
 /**
  * Aggregate validation outcome with zero or more findings.
  *
- * M1 schema note: `ok` and `findings` are independent fields at this layer.
- * Deserialization does not enforce a relationship between them. Canonical docs
- * require non-zero status for blocking findings but do not define how `ok`
- * must relate to `findings`. M2 validate-docs producers must resolve this
- * before shipping (see hasBlockingFindings for blocking detection).
+ * Producer rule (PLAN-005, Model A): when building a result, use
+ * `buildValidationResult` so `ok` is false when any finding has error severity.
+ * Deserialization does not enforce this; external JSON may be inconsistent.
  */
 export interface ValidationResult {
   ok: boolean;
@@ -143,4 +141,23 @@ export function serializeValidationResult(result: ValidationResult): string {
  */
 export function hasBlockingFindings(result: ValidationResult): boolean {
   return result.findings.some((finding) => finding.severity === "error");
+}
+
+/**
+ * Builds a ValidationResult from findings using PLAN-005 Model A semantics.
+ *
+ * `ok` is true when no finding has error severity; warnings and info do not
+ * affect `ok`. M2 validate-docs producers and exit codes must use this helper
+ * (or equivalent logic) so JSON and process status stay aligned.
+ *
+ * Side effects: none.
+ *
+ * @param findings - Collected validation findings from one or more validators.
+ * @returns ValidationResult with `ok` derived from blocking findings.
+ */
+export function buildValidationResult(findings: Finding[]): ValidationResult {
+  return {
+    ok: !hasBlockingFindings({ ok: true, findings }),
+    findings,
+  };
 }

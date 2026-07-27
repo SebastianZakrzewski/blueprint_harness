@@ -99,7 +99,7 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | PLAN-002 | 2026-07-21 | **ACTIVE** | Interim validation ladder per phase; see [Interim validation ladder](#interim-validation-ladder). | M0–M16 | Agent |
 | PLAN-003 | 2026-07-22 | **RESOLVED** | ExecPlan approved for implementation. M0 monorepo scaffold complete; active milestone is M1. | M0–M16 | Independent review 2026-07-22 |
 | PLAN-004 | 2026-07-23 | **RESOLVED** | M1 Universal Core merged on `main` (`7d059e0`). Gate: `pnpm --filter @blueprint-harness/core test` (23/23). | M1 | [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
-| PLAN-005 | 2026-07-23 | **DEFERRED** | `ValidationResult.ok` vs `findings` relationship undefined in canonical docs. M1 schema keeps fields independent; M2 `validate-docs` producers must set semantics before shipping. | M2 | Agent; resolve at M2 start |
+| PLAN-005 | 2026-07-28 | **RESOLVED** | **Model A:** producers set `ok` via `buildValidationResult(findings)` — `ok` is false when any finding has `error` severity; `warning` and `info` do not affect `ok`. Process exit code follows blocking findings (`hasBlockingFindings`). Deserialization does not enforce consistency for external JSON. | M2, M6 | Agent 2026-07-28 |
 
 ---
 
@@ -758,10 +758,11 @@ packages/core/package.json              # scripts.validate-docs entry point
 
 1. Implement doc structure rules (required paths, status headers, index links).
 2. Implement ExecPlan heading linter (12 required headings from PLANS.md).
-3. Export `validateDocs(rootPath, options)` from Core.
-4. Add `scripts.validate-docs` in `packages/core/package.json` calling Core API.
-5. Add positive/negative fixtures; run against this repository.
-6. Do **not** add `packages/cli/src/commands/validate-docs.ts` (deferred to M6).
+3. Aggregate findings with `buildValidationResult` (PLAN-005 Model A); exit non-zero when `hasBlockingFindings`.
+4. Export `validateDocs(rootPath, options)` from Core.
+5. Add `scripts.validate-docs` in `packages/core/package.json` calling Core API.
+6. Add positive/negative fixtures; run against this repository.
+7. Do **not** add `packages/cli/src/commands/validate-docs.ts` (deferred to M6).
 
 #### Commands
 
