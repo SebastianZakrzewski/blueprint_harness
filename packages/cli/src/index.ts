@@ -4,6 +4,7 @@ export const packageIdentity = {
   version: "0.0.0",
 } as const;
 
+export { runAutonomyStatus } from "./commands/autonomy.js";
 export { CHECK_PROVIDER_NAMES, runCheck } from "./commands/check.js";
 export { buildInspectResult, runInspect } from "./commands/inspect.js";
 export { runEnv } from "./commands/env.js";

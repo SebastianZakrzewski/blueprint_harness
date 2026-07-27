@@ -171,3 +171,16 @@ export {
   type MonitoringStatus,
   type RolloutControlState,
 } from "./recovery/index.js";
+
+export {
+  attemptSelfPromotion,
+  buildAutonomyStatusReport,
+  evaluateAutonomyRequest,
+  evaluatePermissionAction,
+  isAutonomyFrozen,
+  PRODUCTION_THRESHOLDS_DEFINED,
+  resetAutonomyState,
+  triggerAutonomyFreeze,
+  type AutonomyStatusReport,
+  type PermissionAction,
+} from "./autonomy/index.js";
