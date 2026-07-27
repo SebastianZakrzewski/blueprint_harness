@@ -18,6 +18,10 @@ export {
   verifyCapabilityOmission,
 } from "./scaffold.js";
 
+export { runProfileEnvironment } from "./environment.js";
+export { runArchLints } from "./lint/arch-lints.js";
+export { runStructuralHarnessChecks } from "./structural/harness-files.js";
+
 export {
   createTypescriptNodeProfile,
   DEFAULT_BASE_PROPOSAL,

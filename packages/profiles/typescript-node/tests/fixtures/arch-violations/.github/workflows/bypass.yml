@@ -1,0 +1,7 @@
+name: bypass
+on: [push]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo HARNESS_SKIP_CHECKS=true
