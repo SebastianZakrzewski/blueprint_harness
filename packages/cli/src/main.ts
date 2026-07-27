@@ -1,5 +1,6 @@
 import { Command } from "commander";
 
+import { runAutonomyStatus } from "./commands/autonomy.js";
 import { runCheck } from "./commands/check.js";
 import { runEnv } from "./commands/env.js";
 import { runInit } from "./commands/init.js";
@@ -131,6 +132,18 @@ export function createHarnessProgram(): Command {
         action: "status",
         rootPath: options.root,
         worktreeId: options.worktreeId,
+        format: options.format === "json" ? "json" : "human",
+      });
+    });
+
+  const autonomyCmd = program.command("autonomy").description("Autonomy policy status");
+
+  autonomyCmd
+    .command("status")
+    .description("Report autonomy level, freeze state, and OD-008 gates")
+    .option("--format <format>", "human or json", "human")
+    .action((options: { format?: string }) => {
+      process.exitCode = runAutonomyStatus({
         format: options.format === "json" ? "json" : "human",
       });
     });

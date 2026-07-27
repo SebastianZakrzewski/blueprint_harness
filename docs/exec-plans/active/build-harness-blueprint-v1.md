@@ -59,7 +59,7 @@ Last updated: 2026-07-28 (M2 complete)
 | M11 Architecture lints and structural tests | 1+ small PRs | `[x]` complete | |
 | M12 Review and CI workflow | 1+ small PRs | `[x]` complete | |
 | M13 Local observability stack | 1+ small PRs | `[x]` complete | OD-003 pins recorded |
-| M14 Release, rollback, recovery, autonomy | 3 proposed internal PRs | `[ ]` remaining | See M14 PR boundaries |
+| M14 Release, rollback, recovery, autonomy | 3 proposed internal PRs | `[x]` complete | M14a–M14c merged |
 | M15 Upgrade Engine | 1+ small PRs | `[ ]` remaining | |
 | M16 Reference validation and V1 gate | 3 proposed internal PRs | `[ ]` remaining | See M16 PR boundaries |
 
