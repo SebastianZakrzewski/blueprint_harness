@@ -47,7 +47,7 @@ Last updated: 2026-07-28 (M2 complete)
 | --- | --- | --- | --- |
 | M0 Monorepo scaffold | 1+ small PRs | `[x]` complete | pnpm workspace + 5 package stubs; Vitest smoke tests; [PR #1](https://github.com/SebastianZakrzewski/blueprint_harness/pull/1) |
 | M1 Universal Core | 1+ small PRs | `[x]` complete | Core contracts in `packages/core`; 23 unit tests; [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
-| M2 Docs and ExecPlan validation | 1+ small PRs | `[x]` complete | `docs-validator`, `execplan-linter`, `validate-docs`; 33/33 tests; gate exit 0 |
+| M2 Docs and ExecPlan validation | 1+ small PRs | `[x]` complete | `docs-validator`, `execplan-linter`, `validate-docs`; 37/37 tests; gate exit 0; [PR #4](https://github.com/SebastianZakrzewski/blueprint_harness/pull/4) |
 | M3 OpenAI Repository Template | 1+ small PRs | `[ ]` remaining | |
 | M4 Cursor adapter | 1+ small PRs | `[ ]` remaining | |
 | M5 Profile SDK | 1+ small PRs | `[ ]` remaining | |
@@ -101,7 +101,7 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | PLAN-003 | 2026-07-22 | **RESOLVED** | ExecPlan approved for implementation. M0 monorepo scaffold complete; active milestone is M1. | M0–M16 | Independent review 2026-07-22 |
 | PLAN-004 | 2026-07-23 | **RESOLVED** | M1 Universal Core merged on `main` (`7d059e0`). Gate: `pnpm --filter @blueprint-harness/core test` (23/23). | M1 | [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
 | PLAN-005 | 2026-07-28 | **RESOLVED** | **Model A:** producers set `ok` via `buildValidationResult(findings)` — `ok` is false when any finding has `error` severity; `warning` and `info` do not affect `ok`. Process exit code follows blocking findings (`hasBlockingFindings`). Deserialization does not enforce consistency for external JSON. | M2, M6 | Agent 2026-07-28 |
-| PLAN-006 | 2026-07-28 | **RESOLVED** | M2 Docs/ExecPlan validation in `packages/core`. Gate: `pnpm --filter @blueprint-harness/core test`, `run validate-docs` exit 0 on canonical docs. | M2 | Agent 2026-07-28 |
+| PLAN-006 | 2026-07-28 | **RESOLVED** | M2 Docs/ExecPlan validation in `packages/core`. Gate: `pnpm --filter @blueprint-harness/core test` (37/37), `run validate-docs` exit 0 on canonical docs. [PR #4](https://github.com/SebastianZakrzewski/blueprint_harness/pull/4). | M2 | Agent 2026-07-28 |
 | PLAN-007 | 2026-07-28 | **RESOLVED** | Docs validation finding IDs use separate namespace from Universal Invariants: `EXEC-001` (ExecPlan `##` headings), `LAYOUT-002` (knowledge layout paths), `STATUS-003` (Status header), `LINK-004` (index links). ExecPlan linter requires top-level `##` sections. PLANS.md mechanical checks for progress tables, acceptance tables, recovery sections, and lifecycle placement are **deferred** (M2 implements headings, status, paths, index links only). | M2 | Agent 2026-07-28; review follow-up |
 
 ---
@@ -156,7 +156,7 @@ when `harness init` reaches **HARNESS_INSTALLED** (OD-006).
 | This ExecPlan | **IMPLEMENTED** (approved 2026-07-22; see PLAN-003) |
 | Monorepo scaffold (`pnpm`, `packages/*`) | **IMPLEMENTED** (M0; local `pnpm -r build/test` green) |
 | Universal Core | **IMPLEMENTED** (M1; `pnpm --filter @blueprint-harness/core test` 23/23) |
-| Docs/ExecPlan validation library (`packages/core`) | **IMPLEMENTED** (M2; `validate-docs` exit 0; 33/33 tests) |
+| Docs/ExecPlan validation library (`packages/core`) | **IMPLEMENTED** (M2; `validate-docs` exit 0; 37/37 tests; [PR #4](https://github.com/SebastianZakrzewski/blueprint_harness/pull/4)) |
 | OpenAI Repository Template | **APPROVED, NOT IMPLEMENTED** |
 | Cursor adapter | **APPROVED, NOT IMPLEMENTED** |
 | Profile SDK | **APPROVED, NOT IMPLEMENTED** |
