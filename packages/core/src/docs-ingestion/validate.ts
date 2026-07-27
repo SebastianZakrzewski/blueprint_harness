@@ -34,6 +34,10 @@ export function detectDuplicateContent(inventory: InventoryEntry[]): Finding[] {
   const byChecksum = new Map<string, InventoryEntry[]>();
 
   for (const entry of inventory) {
+    if (entry.sizeBytes === 0 || entry.relativePath.endsWith(".gitkeep")) {
+      continue;
+    }
+
     const group = byChecksum.get(entry.checksum) ?? [];
     group.push(entry);
     byChecksum.set(entry.checksum, group);

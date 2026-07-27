@@ -1,0 +1,8 @@
+{
+  "core": "0.0.0",
+  "template": "0.0.0",
+  "profileSdk": "0.0.0",
+  "profile": "typescript-node",
+  "capabilities": ["base"],
+  "blueprintVersion": "0.0.0"
+}

@@ -107,3 +107,13 @@ export {
   type InventoryEntry,
   type ProposedMapping,
 } from "./docs-ingestion/index.js";
+
+export {
+  runBootstrap,
+  loadCheckpoints,
+  saveCheckpoint,
+  type BootstrapOptions,
+  type BootstrapResult,
+  type HarnessRenderContext,
+  type HarnessRenderFn,
+} from "./bootstrap/index.js";

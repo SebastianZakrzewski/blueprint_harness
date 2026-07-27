@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@blueprint-harness/core": "workspace:*",
+    "@blueprint-harness/template-openai": "workspace:*",
     "commander": "^13.1.0"
   }
 }

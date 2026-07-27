@@ -26,6 +26,9 @@ importers:
       '@blueprint-harness/core':
         specifier: workspace:*
         version: link:../core
+      '@blueprint-harness/template-openai':
+        specifier: workspace:*
+        version: link:../template-openai
       commander:
         specifier: ^13.1.0
         version: 13.1.0

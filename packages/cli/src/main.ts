@@ -1,6 +1,7 @@
 import { Command } from "commander";
 
 import { runCheck } from "./commands/check.js";
+import { runInit } from "./commands/init.js";
 import { runInspect } from "./commands/inspect.js";
 import { runValidateDocs } from "./commands/validate-docs.js";
 import { cliVersion } from "./version.js";
@@ -51,6 +52,32 @@ export function createHarnessProgram(): Command {
       const format = options.format === "json" ? "json" : "human";
       const mode = options.full ? "full" : "fast";
       const exitCode = runCheck({ mode, rootPath: options.root, format });
+      process.exitCode = exitCode;
+    });
+
+  program
+    .command("init")
+    .description("Bootstrap harness through HARNESS_INSTALLED")
+    .requiredOption("--docs <path>", "incoming docs root")
+    .requiredOption("--target <path>", "bootstrap target directory")
+    .option("--self-apply", "Blueprint self-apply mode (cursor + config only)")
+    .option("--skip-anchor-check", "skip git anchor requirement (tests)")
+    .option("--format <format>", "human or json", "human")
+    .action(async (options: {
+      docs: string;
+      target: string;
+      selfApply?: boolean;
+      skipAnchorCheck?: boolean;
+      format?: string;
+    }) => {
+      const format = options.format === "json" ? "json" : "human";
+      const exitCode = await runInit({
+        docsPath: options.docs,
+        targetPath: options.target,
+        selfApply: options.selfApply,
+        skipAnchorCheck: options.skipAnchorCheck,
+        format,
+      });
       process.exitCode = exitCode;
     });
 
