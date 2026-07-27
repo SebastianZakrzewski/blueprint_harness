@@ -1,0 +1,18 @@
+# Reference observability compose fragment (OD-003 pins).
+services:
+  vector:
+    image: timberio/vector:0.42.0-alpine
+    ports:
+      - "${VECTOR_PORT:-8686}:8686"
+  victoria-logs:
+    image: victoriametrics/victoria-logs:v1.4.0-victorialogs
+    ports:
+      - "${VICTORIA_LOGS_PORT:-9428}:9428"
+  victoria-metrics:
+    image: victoriametrics/victoria-metrics:v1.101.0
+    ports:
+      - "${VICTORIA_METRICS_PORT:-8428}:8428"
+  victoria-traces:
+    image: victoriametrics/victoria-traces:v0.1.0
+    ports:
+      - "${VICTORIA_TRACES_PORT:-10428}:10428"
