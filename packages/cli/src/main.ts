@@ -2,6 +2,7 @@ import { Command } from "commander";
 
 import { runAutonomyStatus } from "./commands/autonomy.js";
 import { runCheck } from "./commands/check.js";
+import { runUpgradeCommand } from "./commands/upgrade.js";
 import { runEnv } from "./commands/env.js";
 import { runInit } from "./commands/init.js";
 import { runInspect } from "./commands/inspect.js";
@@ -87,6 +88,27 @@ export function createHarnessProgram(): Command {
         format,
       });
       process.exitCode = exitCode;
+    });
+
+  program
+    .command("upgrade")
+    .description("Upgrade harness lock to a target blueprint version")
+    .requiredOption("--target-version <version>", "target blueprint version")
+    .option("--dry-run", "plan upgrade without writing harness.lock.json")
+    .option("--root <path>", "project root override")
+    .option("--format <format>", "human or json", "human")
+    .action((options: {
+      targetVersion: string;
+      dryRun?: boolean;
+      root?: string;
+      format?: string;
+    }) => {
+      process.exitCode = runUpgradeCommand({
+        rootPath: options.root,
+        targetVersion: options.targetVersion,
+        dryRun: options.dryRun,
+        format: options.format === "json" ? "json" : "human",
+      });
     });
 
   const envCmd = program.command("env").description("Manage isolated worktree environment");
