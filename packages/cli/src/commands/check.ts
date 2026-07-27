@@ -9,6 +9,8 @@ import {
   type ValidationResult,
 } from "@blueprint-harness/core";
 
+import { runArchLints, runStructuralHarnessChecks, runStructuralImportGraph } from "@blueprint-harness/profiles-typescript-node";
+
 import { emitValidationResult, type OutputFormat } from "../output.js";
 
 type CheckMode = "fast" | "full";
@@ -47,12 +49,16 @@ function injectedFailureCheck(): ValidationResult {
 
 const FAST_PROVIDERS: CheckProvider[] = [
   (rootPath) => validateDocs(rootPath),
+  (rootPath) => runStructuralHarnessChecks(rootPath),
   () => injectedFailureCheck(),
 ];
 
 const FULL_PROVIDERS: CheckProvider[] = [
   (rootPath) => validateDocs(rootPath),
   (rootPath) => workspaceIntegrityCheck(rootPath),
+  (rootPath) => runArchLints(rootPath),
+  (rootPath) => runStructuralHarnessChecks(rootPath),
+  (rootPath) => runStructuralImportGraph(rootPath),
   () => injectedFailureCheck(),
 ];
 
@@ -85,6 +91,13 @@ export function runCheck(options: CheckCommandOptions): number {
 
 /** Provider lists exposed for tests proving --full is a superset of --fast. */
 export const CHECK_PROVIDER_NAMES = {
-  fast: ["validate-docs", "injected-failure"],
-  full: ["validate-docs", "workspace-integrity", "injected-failure"],
+  fast: ["validate-docs", "structural-harness", "injected-failure"],
+  full: [
+    "validate-docs",
+    "workspace-integrity",
+    "arch-lints",
+    "structural-harness",
+    "structural-import-graph",
+    "injected-failure",
+  ],
 } as const;
