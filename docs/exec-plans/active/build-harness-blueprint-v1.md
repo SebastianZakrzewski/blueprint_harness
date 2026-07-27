@@ -78,7 +78,7 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | 2026-07-21 | `docs/exec-plans/active/` did not exist | Only `docs/exec-plans/tech-debt-tracker.md` present | This plan creates the first active ExecPlan |
 | 2026-07-21 | `docs/references/` listed in knowledge layout but empty | Directory absent | M3 template must create empty `docs/references/` in generated projects |
 | 2026-07-21 | All canonical docs are APPROVED / NOT_VERIFIED | Consistent across index files | Implementation must produce verification evidence; do not mark docs VERIFIED without tests |
-| 2026-07-28 | `docs/references/` and `docs/exec-plans/completed/` missing blocked M2-AC1 | Knowledge layout validator reported DOC-002 | M2 created empty directories; canonical repo passes `validate-docs` |
+| 2026-07-28 | `docs/references/` and `docs/exec-plans/completed/` missing blocked M2-AC1 | Knowledge layout validator reported LAYOUT-002 | M2 created empty directories; canonical repo passes `validate-docs` |
 | 2026-07-22 | `pnpm` unavailable via corepack on Windows without admin; npm global install required `NODE_OPTIONS=--use-system-ca` | `corepack enable` EPERM; `npm install -g pnpm` cert error without flag | Document prerequisite in PR; use `npm install -g pnpm@9` with system CA on affected hosts |
 
 ---
@@ -101,7 +101,8 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | PLAN-003 | 2026-07-22 | **RESOLVED** | ExecPlan approved for implementation. M0 monorepo scaffold complete; active milestone is M1. | M0–M16 | Independent review 2026-07-22 |
 | PLAN-004 | 2026-07-23 | **RESOLVED** | M1 Universal Core merged on `main` (`7d059e0`). Gate: `pnpm --filter @blueprint-harness/core test` (23/23). | M1 | [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
 | PLAN-005 | 2026-07-28 | **RESOLVED** | **Model A:** producers set `ok` via `buildValidationResult(findings)` — `ok` is false when any finding has `error` severity; `warning` and `info` do not affect `ok`. Process exit code follows blocking findings (`hasBlockingFindings`). Deserialization does not enforce consistency for external JSON. | M2, M6 | Agent 2026-07-28 |
-| PLAN-006 | 2026-07-28 | **RESOLVED** | M2 Docs/ExecPlan validation in `packages/core`. Gate: `pnpm --filter @blueprint-harness/core test` (33/33), `run validate-docs` exit 0 on canonical docs. Finding IDs: DOC-001 (ExecPlan headings), DOC-002 (layout paths), DOC-003 (Status header), DOC-004 (index links). | M2 | Agent 2026-07-28 |
+| PLAN-006 | 2026-07-28 | **RESOLVED** | M2 Docs/ExecPlan validation in `packages/core`. Gate: `pnpm --filter @blueprint-harness/core test`, `run validate-docs` exit 0 on canonical docs. | M2 | Agent 2026-07-28 |
+| PLAN-007 | 2026-07-28 | **RESOLVED** | Docs validation finding IDs use separate namespace from Universal Invariants: `EXEC-001` (ExecPlan `##` headings), `LAYOUT-002` (knowledge layout paths), `STATUS-003` (Status header), `LINK-004` (index links). ExecPlan linter requires top-level `##` sections. PLANS.md mechanical checks for progress tables, acceptance tables, recovery sections, and lifecycle placement are **deferred** (M2 implements headings, status, paths, index links only). | M2 | Agent 2026-07-28; review follow-up |
 
 ---
 
@@ -759,7 +760,7 @@ packages/core/package.json              # scripts.validate-docs entry point
 #### Implementation sequence
 
 1. Implement doc structure rules (required paths, status headers, index links).
-2. Implement ExecPlan heading linter (12 required headings from PLANS.md).
+2. Implement ExecPlan heading linter (12 required top-level `##` headings from PLANS.md).
 3. Aggregate findings with `buildValidationResult` (PLAN-005 Model A); exit non-zero when `hasBlockingFindings`.
 4. Export `validateDocs(rootPath, options)` from Core.
 5. Add `scripts.validate-docs` in `packages/core/package.json` calling Core API.

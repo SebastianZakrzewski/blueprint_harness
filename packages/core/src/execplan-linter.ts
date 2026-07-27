@@ -1,9 +1,10 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, relative } from "node:path";
 
+import { FINDING_EXEC_MISSING_HEADING } from "./docs-finding-ids.js";
 import type { Finding } from "./validation-result.js";
 
-/** Required ExecPlan section headings from docs/PLANS.md. */
+/** Required ExecPlan section headings from docs/PLANS.md (top-level ## sections). */
 export const REQUIRED_EXECPLAN_HEADINGS: readonly string[] = [
   "Purpose / Big Picture",
   "Progress",
@@ -41,7 +42,24 @@ export function extractMarkdownHeadings(content: string): string[] {
 }
 
 /**
- * Lints a single ExecPlan file for required headings.
+ * Extracts top-level (##) markdown section titles from ExecPlan content.
+ *
+ * @param content - Markdown source.
+ * @returns Top-level section titles in document order.
+ */
+export function extractTopLevelHeadings(content: string): string[] {
+  const headings: string[] = [];
+  for (const line of content.split("\n")) {
+    const match = line.match(/^##\s+(.+?)\s*$/);
+    if (match?.[1]) {
+      headings.push(match[1].trim());
+    }
+  }
+  return headings;
+}
+
+/**
+ * Lints a single ExecPlan file for required top-level headings.
  *
  * Side effects: reads file when content is not provided.
  *
@@ -51,17 +69,17 @@ export function extractMarkdownHeadings(content: string): string[] {
  */
 export function lintExecPlanFile(filePath: string, content?: string): Finding[] {
   const text = content ?? readFileSync(filePath, "utf8");
-  const headings = extractMarkdownHeadings(text);
+  const headings = extractTopLevelHeadings(text);
   const findings: Finding[] = [];
 
   for (const required of REQUIRED_EXECPLAN_HEADINGS) {
     if (!headings.includes(required)) {
       findings.push({
-        id: "DOC-001",
+        id: FINDING_EXEC_MISSING_HEADING,
         severity: "error",
         path: toPosix(filePath),
-        message: `Missing required heading: ${required}`,
-        remediation: `Add the ${required} section per docs/PLANS.md`,
+        message: `Missing required top-level heading: ${required}`,
+        remediation: `Add a ## ${required} section per docs/PLANS.md`,
       });
     }
   }

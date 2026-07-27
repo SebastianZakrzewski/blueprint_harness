@@ -26,8 +26,16 @@ export {
 export { validateDocsStructure } from "./docs-validator.js";
 
 export {
+  FINDING_EXEC_MISSING_HEADING,
+  FINDING_LAYOUT_MISSING_PATH,
+  FINDING_LINK_BROKEN,
+  FINDING_STATUS_MISSING,
+} from "./docs-finding-ids.js";
+
+export {
   REQUIRED_EXECPLAN_HEADINGS,
   extractMarkdownHeadings,
+  extractTopLevelHeadings,
   lintExecPlanFile,
   lintExecPlans,
 } from "./execplan-linter.js";

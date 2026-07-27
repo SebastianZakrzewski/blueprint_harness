@@ -1,6 +1,11 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, relative } from "node:path";
 
+import {
+  FINDING_LAYOUT_MISSING_PATH,
+  FINDING_LINK_BROKEN,
+  FINDING_STATUS_MISSING,
+} from "./docs-finding-ids.js";
 import type { Finding } from "./validation-result.js";
 
 /** Required files from harness-blueprint knowledge layout. */
@@ -61,7 +66,7 @@ export function validateDocsStructure(rootPath: string): Finding[] {
   for (const fileRel of REQUIRED_FILES) {
     if (!existsSync(join(rootPath, fileRel))) {
       findings.push({
-        id: "DOC-002",
+        id: FINDING_LAYOUT_MISSING_PATH,
         severity: "error",
         path: fileRel,
         message: `Missing required knowledge layout file: ${fileRel}`,
@@ -74,7 +79,7 @@ export function validateDocsStructure(rootPath: string): Finding[] {
   for (const dirRel of REQUIRED_DIRS) {
     if (!existsSync(join(rootPath, dirRel))) {
       findings.push({
-        id: "DOC-002",
+        id: FINDING_LAYOUT_MISSING_PATH,
         severity: "error",
         path: dirRel,
         message: `Missing required knowledge layout directory: ${dirRel}`,
@@ -103,7 +108,7 @@ export function validateDocsStructure(rootPath: string): Finding[] {
 
     if (!hasStatus) {
       findings.push({
-        id: "DOC-003",
+        id: FINDING_STATUS_MISSING,
         severity: "error",
         path: relPath,
         message: "Missing Status header in first 15 lines",
@@ -134,7 +139,7 @@ export function validateDocsStructure(rootPath: string): Finding[] {
       const linkedPath = join(indexDir, target);
       if (!existsSync(linkedPath)) {
         findings.push({
-          id: "DOC-004",
+          id: FINDING_LINK_BROKEN,
           severity: "error",
           path: indexRel,
           message: `Broken index link: ${target} does not exist`,

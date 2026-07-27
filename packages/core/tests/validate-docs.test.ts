@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
+import { FINDING_EXEC_MISSING_HEADING, FINDING_LAYOUT_MISSING_PATH } from "../src/docs-finding-ids.js";
 import {
   hasBlockingFindings,
   serializeValidationResult,
@@ -12,6 +13,7 @@ import { resolveRepoRoot, validateDocs } from "../src/validate-docs.js";
 const FIXTURES_DIR = join(dirname(fileURLToPath(import.meta.url)), "fixtures");
 const REPO_ROOT = join(FIXTURES_DIR, "../../../..");
 const DOCS_INVALID = join(FIXTURES_DIR, "docs-invalid");
+const EXECPLAN_INVALID_ROOT = join(FIXTURES_DIR, "execplan-invalid-root");
 
 describe("validate-docs", () => {
   it("resolveRepoRoot finds monorepo from packages/core", () => {
@@ -34,6 +36,16 @@ describe("validate-docs", () => {
     expect(hasBlockingFindings(result)).toBe(true);
   });
 
+  it("validateDocs fails with EXEC-001 on execplan-invalid-root (M2-AC2)", () => {
+    const result = validateDocs(EXECPLAN_INVALID_ROOT);
+
+    expect(result.ok).toBe(false);
+    expect(hasBlockingFindings(result)).toBe(true);
+    expect(result.findings.some((f) => f.id === FINDING_EXEC_MISSING_HEADING)).toBe(
+      true,
+    );
+  });
+
   it("JSON output includes findings with id, severity, path, message (M2-AC3)", () => {
     const result = validateDocs(DOCS_INVALID);
     const parsed = JSON.parse(serializeValidationResult(result)) as {
@@ -49,8 +61,11 @@ describe("validate-docs", () => {
     for (const finding of parsed.findings) {
       expect(finding.id).toBeTruthy();
       expect(finding.severity).toBeTruthy();
+      expect(finding.path).toBeTruthy();
       expect(finding.message).toBeTruthy();
     }
-    expect(parsed.findings.some((f) => f.id === "DOC-002")).toBe(true);
+    expect(parsed.findings.some((f) => f.id === FINDING_LAYOUT_MISSING_PATH)).toBe(
+      true,
+    );
   });
 });

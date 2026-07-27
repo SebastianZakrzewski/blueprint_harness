@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
+import { FINDING_EXEC_MISSING_HEADING } from "../src/docs-finding-ids.js";
 import {
   lintExecPlanFile,
   lintExecPlans,
@@ -29,7 +30,7 @@ describe("execplan-linter", () => {
     expect(REQUIRED_EXECPLAN_HEADINGS).toHaveLength(12);
   });
 
-  it("reports DOC-001 for missing headings in negative fixture", () => {
+  it("reports EXEC-001 for missing top-level headings in negative fixture", () => {
     const fixturePath = join(FIXTURES_DIR, "execplan-invalid/missing-heading.md");
     const content = readFileSync(fixturePath, "utf8");
     const findings = lintExecPlanFile(
@@ -38,10 +39,34 @@ describe("execplan-linter", () => {
     );
 
     expect(findings.length).toBeGreaterThan(0);
-    expect(findings.every((f) => f.id === "DOC-001")).toBe(true);
+    expect(findings.every((f) => f.id === FINDING_EXEC_MISSING_HEADING)).toBe(true);
     expect(findings.some((f) => f.message.includes("Surprises & Discoveries"))).toBe(
       true,
     );
+  });
+
+  it("does not treat nested ### headings as top-level sections", () => {
+    const content = `
+# Plan
+
+Status: ACTIVE
+
+## Purpose / Big Picture
+
+Outcome.
+
+### Progress
+
+Nested only.
+
+## Surprises & Discoveries
+
+None.
+`;
+
+    const findings = lintExecPlanFile("docs/exec-plans/active/nested.md", content);
+    expect(findings.some((f) => f.message.includes("Progress"))).toBe(true);
+    expect(findings.every((f) => f.id === FINDING_EXEC_MISSING_HEADING)).toBe(true);
   });
 
   it("lintExecPlans passes on canonical Blueprint repo", () => {
