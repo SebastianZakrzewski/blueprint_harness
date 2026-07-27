@@ -2,7 +2,8 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { getKnowledgeLayoutManifest } from "./manifest.js";
+import { getKnowledgeLayoutManifest, KNOWLEDGE_LAYOUT_ENTRIES } from "./manifest.js";
+import { CURSOR_ADAPTER_ENTRIES } from "./cursor-adapter.js";
 import type { TemplateRenderContext } from "./types.js";
 
 const PACKAGE_ROOT = join(fileURLToPath(import.meta.url), "..", "..");
@@ -36,7 +37,7 @@ export function renderTemplate(targetDir: string, context: TemplateRenderContext
   const root = resolve(targetDir);
   const created: string[] = [];
 
-  for (const entry of getKnowledgeLayoutManifest()) {
+  for (const entry of [...getKnowledgeLayoutManifest(), ...CURSOR_ADAPTER_ENTRIES]) {
     const fullPath = join(root, entry.path);
 
     if (entry.kind === "directory") {
