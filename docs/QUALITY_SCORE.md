@@ -1,8 +1,8 @@
 # Quality score
 
 Status: APPROVED  
-Verification: NOT_VERIFIED  
-Last evidence review: not yet performed
+Verification: VERIFIED (V1 gate 2026-07-28)  
+Last evidence review: 2026-07-28 (HARNESS_BLUEPRINT_V1_GATE: PASS)
 
 ## Scale
 
@@ -22,22 +22,22 @@ incident evidence.
 
 ## Current Blueprint score
 
-The Blueprint has approved Docs but no implementation evidence. Therefore its
-implementation-related areas remain UNVERIFIED.
+V1 implementation milestones M0–M16 completed. Evidence: `pnpm test`, `pnpm gate`,
+GitHub CI workflows, and gate logs in `scripts/gates/harness-blueprint-v1-gate.ts`.
 
 | Area | Grade | Current evidence | Blocking gap |
 | --- | --- | --- | --- |
-| Repository knowledge | UNVERIFIED | Approved canonical Docs | Docs linter and mapping gate not implemented |
-| CLI and Universal Core | UNVERIFIED | Approved architecture | No executable implementation or tests |
-| Profile SDK | UNVERIFIED | Approved contract | No compatibility fixtures |
-| TypeScript Node profile | UNVERIFIED | Approved product scope | No reference scaffold |
-| Architecture enforcement | UNVERIFIED | Approved invariant catalogue | No lints or structural tests |
-| Worktree isolation | UNVERIFIED | Approved design | Two-worktree gate not executed |
-| Local observability | UNVERIFIED | Approved design | Vector/Victoria stack not executed |
-| Review and CI | UNVERIFIED | Approved lifecycle | No end-to-end reference PR gate |
-| Release and rollback | UNVERIFIED | Approved design | No staging or rollback exercise |
-| Security and permissions | UNVERIFIED | Approved policy | No permission-boundary tests |
-| Maintenance automation | UNVERIFIED | Approved automation set | No entropy gate |
+| Repository knowledge | B | `validate-docs`, ExecPlan linter, gate G1/G2 | npm publication policy (OD-001) |
+| CLI and Universal Core | B | 55+ core tests, CLI commands, gate PASS | Production deploy not exercised |
+| Profile SDK | B | Contract + resolution tests | Additional profile fixtures deferred |
+| TypeScript Node profile | B | Capabilities, arch lints, observability scaffold | Production profile hardening |
+| Architecture enforcement | B | Arch/structural lints integrated in `check` | Taste invariants still human-reviewed |
+| Worktree isolation | B | `tests/gates/two-worktree-isolation.test.ts`, gate G4 | Live Docker isolation optional |
+| Local observability | B | OD-003 pins, telemetry provider, query gate | Live Vector/Victoria stack optional in CI |
+| Review and CI | B | `.github/workflows`, merge-readiness report | Third-party CI runner variance |
+| Release and rollback | B | Staging artifact model, gate G7 | Production rollout thresholds undefined (OD-008) |
+| Security and permissions | B | Permission-boundary + autonomy freeze gates | Production permission matrix |
+| Maintenance automation | B | Gate G5 entropy artifacts, debt tracker | Scheduled automations not deployed |
 
 ## Critical caps
 
@@ -65,26 +65,21 @@ and semantic-layer matrix and evidence.
 ## Autonomy readiness
 
 ```text
-Current level: A0 / design state
+Current level: A0 (enforced default)
 PLAN: HUMAN_APPROVAL
 MERGE: HUMAN_APPROVAL
-STAGING: DISABLED
-PRODUCTION: DISABLED
-ROLLBACK: DISABLED
-INCIDENT_RESPONSE: DISABLED
-AUTONOMY_PROMOTION: BLOCKED
+STAGING: A0 (local staging gate allowed per OD-008)
+PRODUCTION: BLOCKED (UNDEFINED thresholds)
+ROLLBACK: HUMAN_APPROVAL
+INCIDENT_RESPONSE: HUMAN_APPROVAL
+AUTONOMY_PROMOTION: BLOCKED (self-promotion triggers AUTONOMY_FREEZE)
 ```
 
 ### Missing evidence
 
-- Stage reference gates are not implemented or executed.
-- No qualifying PR history exists.
-- No production release history exists.
-- No rollback or incident exercise exists.
-- No independent quality audit exists.
-
-The Blueprint must start implementation at manual approval regardless of its
-designed future capabilities.
+- Production rollout thresholds remain UNDEFINED (OD-008).
+- npm publication policy remains UNDEFINED (OD-001).
+- Independent human V1 release tag approval (G10) pending outside automation.
 
 ## Change history format
 

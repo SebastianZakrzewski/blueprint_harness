@@ -9,7 +9,8 @@
     "build": "pnpm -r build",
     "test": "pnpm -r test && vitest run --config vitest.config.ts",
     "lint": "echo lint stub",
-    "harness": "pnpm --filter @blueprint-harness/cli exec harness"
+    "harness": "pnpm --filter @blueprint-harness/cli exec harness",
+    "gate": "pnpm -r build && node --experimental-strip-types scripts/gates/harness-blueprint-v1-gate.ts"
   },
   "devDependencies": {
     "@blueprint-harness/cli": "workspace:*",

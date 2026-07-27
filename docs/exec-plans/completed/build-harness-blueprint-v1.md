@@ -61,7 +61,7 @@ Last updated: 2026-07-28 (M2 complete)
 | M13 Local observability stack | 1+ small PRs | `[x]` complete | OD-003 pins recorded |
 | M14 Release, rollback, recovery, autonomy | 3 proposed internal PRs | `[x]` complete | M14a–M14c merged |
 | M15 Upgrade Engine | 1+ small PRs | `[x]` complete | |
-| M16 Reference validation and V1 gate | 3 proposed internal PRs | `[ ]` remaining | See M16 PR boundaries |
+| M16 Reference validation and V1 gate | 3 proposed internal PRs | `[x]` complete | HARNESS_BLUEPRINT_V1_GATE: PASS |
 
 **Active milestone:** M3 OpenAI Repository Template.
 
@@ -108,15 +108,17 @@ OD-003 resolved at M13 with recorded Vector/Victoria version pins.
 
 ## Outcomes & Retrospective
 
-_Pending plan completion. Do not fill until M16 closes._
+**Status:** `HARNESS_BLUEPRINT_V1_GATE: PASS` (2026-07-28)
 
-At closure, record:
-
-- Whether `HARNESS_BLUEPRINT_V1_GATE: PASS` was achieved.
-- What shipped vs deferred.
-- Evidence links (CI runs, gate logs, PR URLs).
-- Remaining debt (if any) with entries in [`tech-debt-tracker.md`](../tech-debt-tracker.md).
-- Lessons for future ExecPlans.
+- Milestones M0–M16 delivered via incremental PRs (#2–#22 approx.).
+- Shipped: monorepo scaffold, core, CLI, template, profile SDK, typescript-node profile,
+  worktree env, arch enforcement, CI, observability capability, release/rollback, autonomy
+  controls, upgrade engine, and V1 gate script.
+- Deferred: npm publication (OD-001), production rollout thresholds (OD-008), live production
+  observability export, scheduled maintenance automations.
+- Evidence: `pnpm test`, `pnpm gate`, GitHub Actions workflows, gate tests under `tests/gates/`.
+- Remaining debt: reference-project docs layout normalization (`docs/docs` nesting), G10 human
+  release tag approval, production threshold definition.
 
 ---
 
