@@ -48,7 +48,7 @@ Last updated: 2026-07-28 (M2 complete)
 | M0 Monorepo scaffold | 1+ small PRs | `[x]` complete | pnpm workspace + 5 package stubs; Vitest smoke tests; [PR #1](https://github.com/SebastianZakrzewski/blueprint_harness/pull/1) |
 | M1 Universal Core | 1+ small PRs | `[x]` complete | Core contracts in `packages/core`; 23 unit tests; [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
 | M2 Docs and ExecPlan validation | 1+ small PRs | `[x]` complete | `docs-validator`, `execplan-linter`, `validate-docs`; 37/37 tests; gate exit 0; [PR #4](https://github.com/SebastianZakrzewski/blueprint_harness/pull/4) |
-| M3 OpenAI Repository Template | 1+ small PRs | `[ ]` remaining | |
+| M3 OpenAI Repository Template | 1+ small PRs | `[x]` complete | template renderer + manifest; 6/6 tests |
 | M4 Cursor adapter | 1+ small PRs | `[ ]` remaining | |
 | M5 Profile SDK | 1+ small PRs | `[ ]` remaining | |
 | M6 CLI foundation | 1+ small PRs | `[ ]` remaining | Wraps M2 `validate-docs` |
@@ -157,7 +157,7 @@ when `harness init` reaches **HARNESS_INSTALLED** (OD-006).
 | Monorepo scaffold (`pnpm`, `packages/*`) | **IMPLEMENTED** (M0; local `pnpm -r build/test` green) |
 | Universal Core | **IMPLEMENTED** (M1; `pnpm --filter @blueprint-harness/core test` 23/23) |
 | Docs/ExecPlan validation library (`packages/core`) | **IMPLEMENTED** (M2; `validate-docs` exit 0; 37/37 tests; [PR #4](https://github.com/SebastianZakrzewski/blueprint_harness/pull/4)) |
-| OpenAI Repository Template | **APPROVED, NOT IMPLEMENTED** |
+| OpenAI Repository Template | **IMPLEMENTED** (M3; `pnpm --filter @blueprint-harness/template-openai test` 6/6) |
 | Cursor adapter | **APPROVED, NOT IMPLEMENTED** |
 | Profile SDK | **APPROVED, NOT IMPLEMENTED** |
 | `typescript-node` profile | **APPROVED, NOT IMPLEMENTED** |

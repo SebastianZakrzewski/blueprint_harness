@@ -26,7 +26,11 @@ importers:
 
   packages/profiles/typescript-node: {}
 
-  packages/template-openai: {}
+  packages/template-openai:
+    dependencies:
+      '@blueprint-harness/core':
+        specifier: workspace:*
+        version: link:../core
 
 packages:
 
