@@ -41,7 +41,18 @@ importers:
         specifier: workspace:*
         version: link:../core
 
-  packages/profiles/typescript-node: {}
+  packages/profiles/typescript-node:
+    dependencies:
+      '@blueprint-harness/core':
+        specifier: workspace:*
+        version: link:../../core
+      '@blueprint-harness/profile-sdk':
+        specifier: workspace:*
+        version: link:../../profile-sdk
+    devDependencies:
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.7(@types/node@22.20.1)
 
   packages/template-openai:
     dependencies:
