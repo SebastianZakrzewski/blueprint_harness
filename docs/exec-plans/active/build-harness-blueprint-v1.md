@@ -54,8 +54,8 @@ Last updated: 2026-07-28 (M2 complete)
 | M6 CLI foundation | 1+ small PRs | `[x]` complete | harness CLI validate-docs/inspect/check; 7/7 tests |
 | M7 Docs discovery, mapping, manifest | 1+ small PRs | `[x]` complete | docs-ingestion module; 5/5 ingestion tests |
 | M8 Bootstrap init (HARNESS_INSTALLED) | 1+ small PRs | `[x]` complete | init command, bootstrap checkpoints, self-apply OD-006 |
-| M9 TypeScript/Node profile + scaffold | 3 proposed internal PRs | `[ ]` remaining | See M9 PR boundaries |
-| M10 Worktree and isolated environment | 1+ small PRs | `[ ]` remaining | |
+| M9 TypeScript/Node profile + scaffold | 3 proposed internal PRs | `[x]` complete | M9a–M9c merged; 7/7 profile tests; reference fixture |
+| M10 Worktree and isolated environment | 1+ small PRs | `[x]` complete | harness env up/down/status; 4/4 isolation gate |
 | M11 Architecture lints and structural tests | 1+ small PRs | `[ ]` remaining | |
 | M12 Review and CI workflow | 1+ small PRs | `[ ]` remaining | |
 | M13 Local observability stack | 1+ small PRs | `[ ]` remaining | OD-003 pins required to complete |

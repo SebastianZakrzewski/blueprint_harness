@@ -118,3 +118,11 @@ export {
   type HarnessRenderFn,
   type ScaffoldProfileFn,
 } from "./bootstrap/index.js";
+
+export {
+  cleanupEnvironment,
+  deriveWorktreeId,
+  getEnvironmentStatus,
+  provisionEnvironment,
+  type WorktreeEnvironmentStatus,
+} from "./environment/index.js";

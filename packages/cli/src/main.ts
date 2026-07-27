@@ -1,6 +1,7 @@
 import { Command } from "commander";
 
 import { runCheck } from "./commands/check.js";
+import { runEnv } from "./commands/env.js";
 import { runInit } from "./commands/init.js";
 import { runInspect } from "./commands/inspect.js";
 import { runValidateDocs } from "./commands/validate-docs.js";
@@ -79,6 +80,53 @@ export function createHarnessProgram(): Command {
         format,
       });
       process.exitCode = exitCode;
+    });
+
+  const envCmd = program.command("env").description("Manage isolated worktree environment");
+
+  envCmd
+    .command("up")
+    .description("Provision isolated environment for current worktree")
+    .option("--root <path>", "project root override")
+    .option("--worktree-id <id>", "explicit worktree id")
+    .option("--format <format>", "human or json", "human")
+    .action((options: { root?: string; worktreeId?: string; format?: string }) => {
+      process.exitCode = runEnv({
+        action: "up",
+        rootPath: options.root,
+        worktreeId: options.worktreeId,
+        format: options.format === "json" ? "json" : "human",
+      });
+    });
+
+  envCmd
+    .command("down")
+    .description("Clean up tagged environment resources")
+    .option("--root <path>", "project root override")
+    .option("--worktree-id <id>", "explicit worktree id")
+    .option("--format <format>", "human or json", "human")
+    .action((options: { root?: string; worktreeId?: string; format?: string }) => {
+      process.exitCode = runEnv({
+        action: "down",
+        rootPath: options.root,
+        worktreeId: options.worktreeId,
+        format: options.format === "json" ? "json" : "human",
+      });
+    });
+
+  envCmd
+    .command("status")
+    .description("Show environment health without secrets")
+    .option("--root <path>", "project root override")
+    .option("--worktree-id <id>", "explicit worktree id")
+    .option("--format <format>", "human or json", "human")
+    .action((options: { root?: string; worktreeId?: string; format?: string }) => {
+      process.exitCode = runEnv({
+        action: "status",
+        rootPath: options.root,
+        worktreeId: options.worktreeId,
+        format: options.format === "json" ? "json" : "human",
+      });
     });
 
   return program;

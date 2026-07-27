@@ -10,6 +10,7 @@ import type {
 import { resolveCapabilities } from "@blueprint-harness/profile-sdk";
 
 import { OMITTED_CAPABILITY_MARKERS, TYPESCRIPT_NODE_CAPABILITIES } from "./catalog.js";
+import { runProfileEnvironment } from "./environment.js";
 import { scaffoldCapabilities, verifyCapabilityOmission } from "./scaffold.js";
 
 const ok = () => buildValidationResult([]);
@@ -84,8 +85,8 @@ export function createTypescriptNodeProfile(
       return ok();
     },
 
-    async env(_context: ProfileContext, _action: ProfileEnvAction) {
-      return ok();
+    async env(context: ProfileContext, action: ProfileEnvAction) {
+      return runProfileEnvironment(context, action);
     },
 
     async arch(_context: ProfileContext) {
