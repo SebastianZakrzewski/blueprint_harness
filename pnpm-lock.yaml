@@ -11,6 +11,9 @@ importers:
       '@blueprint-harness/cli':
         specifier: workspace:*
         version: link:packages/cli
+      '@blueprint-harness/core':
+        specifier: workspace:*
+        version: link:packages/core
       '@types/node':
         specifier: ^22.15.21
         version: 22.20.1

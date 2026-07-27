@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blueprint Harness — Dokumentacja</title>
+<meta name="description" content="Interaktywna dokumentacja repozytorium blueprint_harness" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2310a37f'/%3E%3Cpath d='M9 16l5 5 9-11' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <button id="navToggle" class="icon-btn only-mobile" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="#/overview" class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-text">Blueprint&nbsp;Harness<span class="brand-sub">docs</span></span>
+    </a>
+
+    <div class="topbar-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="searchInput" type="text" placeholder="Szukaj w dokumentacji…" autocomplete="off" />
+      <kbd>/</kbd>
+    </div>
+
+    <nav class="topbar-links">
+      <a href="#/overview" class="top-link">Start</a>
+      <a href="#/arch-system" class="top-link">Architektura</a>
+      <a href="#/spec-blueprint" class="top-link">Product Specs</a>
+      <a href="#/status-execplan" class="top-link">Status</a>
+      <a href="https://github.com/SebastianZakrzewski/blueprint_harness" target="_blank" rel="noopener" class="top-link icon-link">
+        GitHub
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <aside id="sidebar" class="sidebar">
+      <div id="sidebarNav" class="sidebar-nav"></div>
+      <div class="sidebar-footer">
+        <div class="version-pill">v0.0.0 · wersja robocza</div>
+      </div>
+    </aside>
+
+    <div id="sidebarScrim" class="sidebar-scrim"></div>
+
+    <main class="content-area">
+      <div id="breadcrumb" class="breadcrumb"></div>
+      <article id="page" class="page"></article>
+      <div id="pagerNav" class="pager-nav"></div>
+      <footer class="page-footer">
+        Ta dokumentacja jest generowana na podstawie plików źródłowych repozytorium
+        (<code>AGENTS.md</code>, <code>ARCHITECTURE.md</code>, <code>docs/</code>, <code>packages/</code>)
+        oraz podręcznika użytkownika. To wstępna wersja robocza — będzie dalej rozwijana.
+      </footer>
+    </main>
+
+    <aside id="toc" class="toc"></aside>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script src="assets/content.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
