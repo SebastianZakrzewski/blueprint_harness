@@ -58,7 +58,7 @@ Last updated: 2026-07-28 (M2 complete)
 | M10 Worktree and isolated environment | 1+ small PRs | `[x]` complete | harness env up/down/status; 4/4 isolation gate |
 | M11 Architecture lints and structural tests | 1+ small PRs | `[x]` complete | |
 | M12 Review and CI workflow | 1+ small PRs | `[x]` complete | |
-| M13 Local observability stack | 1+ small PRs | `[ ]` remaining | OD-003 pins required to complete |
+| M13 Local observability stack | 1+ small PRs | `[x]` complete | OD-003 pins recorded |
 | M14 Release, rollback, recovery, autonomy | 3 proposed internal PRs | `[ ]` remaining | See M14 PR boundaries |
 | M15 Upgrade Engine | 1+ small PRs | `[ ]` remaining | |
 | M16 Reference validation and V1 gate | 3 proposed internal PRs | `[ ]` remaining | See M16 PR boundaries |
@@ -66,7 +66,7 @@ Last updated: 2026-07-28 (M2 complete)
 **Active milestone:** M3 OpenAI Repository Template.
 
 **Blocked:** none for local V1 implementation. OD-001 blocks npm publication only.
-OD-003 blocks **completion** of M13 until version pins are recorded.
+OD-003 resolved at M13 with recorded Vector/Victoria version pins.
 
 ---
 
@@ -89,7 +89,7 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | --- | --- | --- | --- | --- | --- |
 | OD-001 | 2026-07-21 | **DEFERRED** | npm scope `@sellgenius/harness`; registry and publication policy undecided. **Must not block implementation.** Required before npm publication. | Publish step (post-V1 gate) | **HUMAN_JUDGMENT_REQUIRED** before publish |
 | OD-002 | 2026-07-21 | **RESOLVED** | **Docker Compose** is the reference deployment platform for V1 container delivery. | M9, M14, M16 | Human review 2026-07-21 |
-| OD-003 | 2026-07-21 | **DEFERRED** | Vector/Victoria versions pinned during M13 using a verified compatibility matrix. **M13 cannot complete** until versions and query fixtures are recorded in Decision Log. | M13 | Human approves pins at M13 |
+| OD-003 | 2026-07-28 | **RESOLVED** | Vector `0.42.0-alpine`, VictoriaLogs `v1.4.0-victorialogs`, VictoriaMetrics `v1.101.0`, VictoriaTraces `v0.1.0`. Query APIs: LogSQL (`/select/logsql/query`), PromQL (`{worktreeId}`), TraceQL (`{worktreeId}`). Compatibility matrix in `packages/profiles/typescript-node/src/observability/versions.ts`. | M13 | Human approves pins at M13 |
 | OD-004 | 2026-07-21 | **RESOLVED** | **Local Supabase** is the default for validation, CI, worktree isolation, and the reference gate. Remote Supabase is optional and must not be required by V1 gates. | M9, M10, M16 | Human review 2026-07-21 |
 | OD-005 | 2026-07-21 | **RESOLVED** | Inspectable in-repo fixture at `fixtures/reference-project/`. Additionally test clean project generation in a **temporary directory** (not committed). | M9, M16 | Human review 2026-07-21 |
 | OD-006 | 2026-07-21 | **RESOLVED** | Blueprint self-applies during **M8** when `harness init` reaches **HARNESS_INSTALLED**. | M8 | Human review 2026-07-21 |

@@ -7,6 +7,7 @@ import type { CapabilityResolutionProposal } from "@blueprint-harness/profile-sd
 import { scaffoldBase } from "./capabilities/base.js";
 import { scaffoldDatabase } from "./capabilities/database.js";
 import { scaffoldMastra } from "./capabilities/mastra.js";
+import { scaffoldObservability } from "./capabilities/observability.js";
 import { scaffoldNestjs } from "./capabilities/nestjs.js";
 import { scaffoldSupabase } from "./capabilities/supabase.js";
 
@@ -17,6 +18,7 @@ const CAPABILITY_SCAFFOLDERS: Record<string, (projectRoot: string) => string[]> 
   database: scaffoldDatabase,
   supabase: scaffoldSupabase,
   mastra: scaffoldMastra,
+  observability: scaffoldObservability,
 };
 
 /**
