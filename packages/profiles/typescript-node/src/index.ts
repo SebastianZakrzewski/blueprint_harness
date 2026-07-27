@@ -21,5 +21,6 @@ export {
 export {
   createTypescriptNodeProfile,
   DEFAULT_BASE_PROPOSAL,
+  REFERENCE_STACK_PROPOSAL,
   typescriptNodeProfile,
 } from "./profile.js";
