@@ -116,4 +116,5 @@ export {
   type BootstrapResult,
   type HarnessRenderContext,
   type HarnessRenderFn,
+  type ScaffoldProfileFn,
 } from "./bootstrap/index.js";

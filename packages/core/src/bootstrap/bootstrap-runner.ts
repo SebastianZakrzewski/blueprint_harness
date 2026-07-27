@@ -34,7 +34,13 @@ export interface BootstrapOptions {
   skipAnchorCheck?: boolean;
   /** Injected template render hook (provided by CLI). */
   renderHarness?: HarnessRenderFn;
+  /** Injected profile scaffold hook (M9 — SCAFFOLD_GENERATED). */
+  scaffoldProfile?: ScaffoldProfileFn;
 }
+
+export type ScaffoldProfileFn = (
+  targetDir: string,
+) => Promise<{ ok: boolean; findings: Finding[]; written?: string[] }>;
 
 export interface BootstrapResult {
   ok: boolean;
@@ -116,7 +122,17 @@ export async function runBootstrap(options: BootstrapOptions): Promise<Bootstrap
   let checkpoints = loadCheckpoints(targetDir);
   const completed = completedStates(checkpoints);
 
-  if (completed.includes("HARNESS_INSTALLED")) {
+  if (completed.includes("SCAFFOLD_GENERATED")) {
+    return {
+      ok: true,
+      state: "SCAFFOLD_GENERATED",
+      checkpoints,
+      findings: [],
+      writtenFiles,
+    };
+  }
+
+  if (completed.includes("HARNESS_INSTALLED") && !options.scaffoldProfile) {
     return {
       ok: true,
       state: "HARNESS_INSTALLED",
@@ -237,9 +253,39 @@ export async function runBootstrap(options: BootstrapOptions): Promise<Bootstrap
     checkpoints = loadCheckpoints(targetDir);
   }
 
+  if (needsStep(completedStates(checkpoints), "SCAFFOLD_GENERATED") && options.scaffoldProfile) {
+    const scaffoldResult = await options.scaffoldProfile(targetDir);
+    if (!scaffoldResult.ok) {
+      return {
+        ok: false,
+        state: "HARNESS_INSTALLED",
+        checkpoints,
+        findings: scaffoldResult.findings,
+        writtenFiles,
+      };
+    }
+
+    if (scaffoldResult.written) {
+      writtenFiles.push(...scaffoldResult.written);
+    }
+
+    saveCheckpoint(
+      targetDir,
+      recordCheckpoint("SCAFFOLD_GENERATED", {
+        inputsChecksum: checksumString(targetDir),
+        outputsChecksum: checksumString(scaffoldResult.written?.join(",") ?? "scaffold"),
+      }),
+    );
+    checkpoints = loadCheckpoints(targetDir);
+  }
+
+  const finalState = completedStates(checkpoints).includes("SCAFFOLD_GENERATED")
+    ? "SCAFFOLD_GENERATED"
+    : "HARNESS_INSTALLED";
+
   return {
     ok: true,
-    state: "HARNESS_INSTALLED",
+    state: finalState,
     checkpoints,
     findings: [],
     writtenFiles,
