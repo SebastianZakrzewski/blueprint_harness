@@ -23,6 +23,21 @@ export {
   type UpgradePhase,
 } from "./lifecycle.js";
 
+export { validateDocsStructure } from "./docs-validator.js";
+
+export {
+  REQUIRED_EXECPLAN_HEADINGS,
+  extractMarkdownHeadings,
+  lintExecPlanFile,
+  lintExecPlans,
+} from "./execplan-linter.js";
+
+export {
+  resolveRepoRoot,
+  validateDocs,
+  type ValidateDocsOptions,
+} from "./validate-docs.js";
+
 export {
   ValidationResultParseError,
   buildValidationResult,

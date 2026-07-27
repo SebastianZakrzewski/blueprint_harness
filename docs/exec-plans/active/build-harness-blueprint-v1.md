@@ -41,13 +41,13 @@ production access, and a frontend for this Blueprint repository itself
 
 ## Progress
 
-Last updated: 2026-07-23 (M1 complete)
+Last updated: 2026-07-28 (M2 complete)
 
 | Milestone | Proposed PRs | Status | Notes |
 | --- | --- | --- | --- |
 | M0 Monorepo scaffold | 1+ small PRs | `[x]` complete | pnpm workspace + 5 package stubs; Vitest smoke tests; [PR #1](https://github.com/SebastianZakrzewski/blueprint_harness/pull/1) |
 | M1 Universal Core | 1+ small PRs | `[x]` complete | Core contracts in `packages/core`; 23 unit tests; [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
-| M2 Docs and ExecPlan validation | 1+ small PRs | `[ ]` remaining | Core only; no CLI dependency |
+| M2 Docs and ExecPlan validation | 1+ small PRs | `[x]` complete | `docs-validator`, `execplan-linter`, `validate-docs`; 33/33 tests; gate exit 0 |
 | M3 OpenAI Repository Template | 1+ small PRs | `[ ]` remaining | |
 | M4 Cursor adapter | 1+ small PRs | `[ ]` remaining | |
 | M5 Profile SDK | 1+ small PRs | `[ ]` remaining | |
@@ -63,7 +63,7 @@ Last updated: 2026-07-23 (M1 complete)
 | M15 Upgrade Engine | 1+ small PRs | `[ ]` remaining | |
 | M16 Reference validation and V1 gate | 3 proposed internal PRs | `[ ]` remaining | See M16 PR boundaries |
 
-**Active milestone:** M2 Docs and ExecPlan validation.
+**Active milestone:** M3 OpenAI Repository Template.
 
 **Blocked:** none for local V1 implementation. OD-001 blocks npm publication only.
 OD-003 blocks **completion** of M13 until version pins are recorded.
@@ -78,6 +78,7 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | 2026-07-21 | `docs/exec-plans/active/` did not exist | Only `docs/exec-plans/tech-debt-tracker.md` present | This plan creates the first active ExecPlan |
 | 2026-07-21 | `docs/references/` listed in knowledge layout but empty | Directory absent | M3 template must create empty `docs/references/` in generated projects |
 | 2026-07-21 | All canonical docs are APPROVED / NOT_VERIFIED | Consistent across index files | Implementation must produce verification evidence; do not mark docs VERIFIED without tests |
+| 2026-07-28 | `docs/references/` and `docs/exec-plans/completed/` missing blocked M2-AC1 | Knowledge layout validator reported DOC-002 | M2 created empty directories; canonical repo passes `validate-docs` |
 | 2026-07-22 | `pnpm` unavailable via corepack on Windows without admin; npm global install required `NODE_OPTIONS=--use-system-ca` | `corepack enable` EPERM; `npm install -g pnpm` cert error without flag | Document prerequisite in PR; use `npm install -g pnpm@9` with system CA on affected hosts |
 
 ---
@@ -100,6 +101,7 @@ OD-003 blocks **completion** of M13 until version pins are recorded.
 | PLAN-003 | 2026-07-22 | **RESOLVED** | ExecPlan approved for implementation. M0 monorepo scaffold complete; active milestone is M1. | M0–M16 | Independent review 2026-07-22 |
 | PLAN-004 | 2026-07-23 | **RESOLVED** | M1 Universal Core merged on `main` (`7d059e0`). Gate: `pnpm --filter @blueprint-harness/core test` (23/23). | M1 | [PR #2](https://github.com/SebastianZakrzewski/blueprint_harness/pull/2) |
 | PLAN-005 | 2026-07-28 | **RESOLVED** | **Model A:** producers set `ok` via `buildValidationResult(findings)` — `ok` is false when any finding has `error` severity; `warning` and `info` do not affect `ok`. Process exit code follows blocking findings (`hasBlockingFindings`). Deserialization does not enforce consistency for external JSON. | M2, M6 | Agent 2026-07-28 |
+| PLAN-006 | 2026-07-28 | **RESOLVED** | M2 Docs/ExecPlan validation in `packages/core`. Gate: `pnpm --filter @blueprint-harness/core test` (33/33), `run validate-docs` exit 0 on canonical docs. Finding IDs: DOC-001 (ExecPlan headings), DOC-002 (layout paths), DOC-003 (Status header), DOC-004 (index links). | M2 | Agent 2026-07-28 |
 
 ---
 
@@ -153,7 +155,7 @@ when `harness init` reaches **HARNESS_INSTALLED** (OD-006).
 | This ExecPlan | **IMPLEMENTED** (approved 2026-07-22; see PLAN-003) |
 | Monorepo scaffold (`pnpm`, `packages/*`) | **IMPLEMENTED** (M0; local `pnpm -r build/test` green) |
 | Universal Core | **IMPLEMENTED** (M1; `pnpm --filter @blueprint-harness/core test` 23/23) |
-| Docs/ExecPlan validation library (`packages/core`) | **APPROVED, NOT IMPLEMENTED** |
+| Docs/ExecPlan validation library (`packages/core`) | **IMPLEMENTED** (M2; `validate-docs` exit 0; 33/33 tests) |
 | OpenAI Repository Template | **APPROVED, NOT IMPLEMENTED** |
 | Cursor adapter | **APPROVED, NOT IMPLEMENTED** |
 | Profile SDK | **APPROVED, NOT IMPLEMENTED** |
@@ -1883,7 +1885,7 @@ findings:
 7. Do not combine two milestone outcomes in one PR.
 8. ExecPlan approval is recorded in PLAN-003. Do not start a milestone until the prior milestone's validation passes on `main`.
 
-**Implementation status:** M1 complete (Universal Core contracts in `packages/core`). **Active milestone:** M2 Docs and ExecPlan validation.
+**Implementation status:** M2 complete (Docs/ExecPlan validation in `packages/core`). **Active milestone:** M3 OpenAI Repository Template.
 
 **Documentation consulted (plan authoring):** listed in Context and Orientation.  
 **Invariants applied (plan authoring):** listed in Context and Orientation.
