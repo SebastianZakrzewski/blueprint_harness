@@ -1,4 +1,9 @@
-import { buildValidationResult } from "@blueprint-harness/core";
+import {
+  buildValidationResult,
+  deployStagingArtifact,
+  rollbackStagingArtifact,
+  verifyStagingDeployment,
+} from "@blueprint-harness/core";
 import type {
   CapabilityResolutionProposal,
   ProfileContext,
@@ -97,12 +102,33 @@ export function createTypescriptNodeProfile(
       return ok();
     },
 
-    async deploy(_context: ProfileContext, _target: DeployTarget) {
-      return ok();
+    async deploy(context: ProfileContext, target: DeployTarget) {
+      if (target !== "staging") {
+        return buildValidationResult([
+          {
+            id: "RELEASE-006",
+            severity: "error",
+            message: `Deploy target "${target}" is not supported in V1 profile stub.`,
+          },
+        ]);
+      }
+
+      deployStagingArtifact(context.projectRoot, `staging-build:${context.projectRoot}`);
+      return verifyStagingDeployment(context.projectRoot);
     },
 
-    async rollback(_context: ProfileContext, _target: DeployTarget) {
-      return ok();
+    async rollback(context: ProfileContext, target: DeployTarget) {
+      if (target !== "staging") {
+        return buildValidationResult([
+          {
+            id: "RELEASE-006",
+            severity: "error",
+            message: `Rollback target "${target}" is not supported in V1 profile stub.`,
+          },
+        ]);
+      }
+
+      return rollbackStagingArtifact(context.projectRoot);
     },
   };
 }
