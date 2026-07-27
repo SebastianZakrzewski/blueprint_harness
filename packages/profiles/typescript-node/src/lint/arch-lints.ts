@@ -32,7 +32,10 @@ export function runArchLints(projectRoot: string): ReturnType<typeof buildValida
 
   for (const filePath of files) {
     const content = readFileSync(filePath, "utf8");
-    const relative = filePath.replace(projectRoot, "").replace(/^[/\\]/, "");
+    const relative = filePath
+      .replace(projectRoot, "")
+      .replace(/^[/\\]/, "")
+      .replace(/\\/g, "/");
 
     if (content.includes("eval(")) {
       findings.push({

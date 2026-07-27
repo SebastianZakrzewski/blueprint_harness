@@ -45,11 +45,17 @@ export function createHarnessProgram(): Command {
   program
     .command("check")
     .description("Run harness checks")
-    .requiredOption("--fast", "run fast check providers")
+    .option("--fast", "run fast check providers")
     .option("--full", "run full check providers (superset of --fast)")
     .option("--format <format>", "human or json", "human")
     .option("--root <path>", "repository root override")
     .action((options: { fast?: boolean; full?: boolean; format?: string; root?: string }) => {
+      if (!options.fast && !options.full) {
+        console.error("harness check requires --fast or --full");
+        process.exitCode = 1;
+        return;
+      }
+
       const format = options.format === "json" ? "json" : "human";
       const mode = options.full ? "full" : "fast";
       const exitCode = runCheck({ mode, rootPath: options.root, format });

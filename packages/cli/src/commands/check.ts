@@ -9,7 +9,7 @@ import {
   type ValidationResult,
 } from "@blueprint-harness/core";
 
-import { runArchLints, runStructuralHarnessChecks } from "@blueprint-harness/profiles-typescript-node";
+import { runArchLints, runStructuralHarnessChecks, runStructuralImportGraph } from "@blueprint-harness/profiles-typescript-node";
 
 import { emitValidationResult, type OutputFormat } from "../output.js";
 
@@ -58,6 +58,7 @@ const FULL_PROVIDERS: CheckProvider[] = [
   (rootPath) => workspaceIntegrityCheck(rootPath),
   (rootPath) => runArchLints(rootPath),
   (rootPath) => runStructuralHarnessChecks(rootPath),
+  (rootPath) => runStructuralImportGraph(rootPath),
   () => injectedFailureCheck(),
 ];
 
@@ -96,6 +97,7 @@ export const CHECK_PROVIDER_NAMES = {
     "workspace-integrity",
     "arch-lints",
     "structural-harness",
+    "structural-import-graph",
     "injected-failure",
   ],
 } as const;

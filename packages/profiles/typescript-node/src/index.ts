@@ -21,6 +21,7 @@ export {
 export { runProfileEnvironment } from "./environment.js";
 export { runArchLints } from "./lint/arch-lints.js";
 export { runStructuralHarnessChecks } from "./structural/harness-files.js";
+export { runStructuralImportGraph } from "./structural/import-graph.js";
 
 export {
   createTypescriptNodeProfile,

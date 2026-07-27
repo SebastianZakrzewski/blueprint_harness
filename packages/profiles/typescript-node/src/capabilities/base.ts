@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -12,6 +12,23 @@ export const BASE_SCAFFOLD_PATHS = [
 ] as const;
 
 const PACKAGE_ROOT = dirname(fileURLToPath(import.meta.url));
+
+function readHealthServerTemplate(): string {
+  const localTemplate = join(PACKAGE_ROOT, "health-server.ts");
+  if (existsSync(localTemplate)) {
+    return readFileSync(localTemplate, "utf8");
+  }
+
+  const packageSrcTemplate = join(
+    PACKAGE_ROOT,
+    "..",
+    "..",
+    "src",
+    "capabilities",
+    "health-server.ts",
+  );
+  return readFileSync(packageSrcTemplate, "utf8");
+}
 
 const PACKAGE_JSON = {
   name: "app",
@@ -52,7 +69,7 @@ export default defineConfig({
 });
 `;
 
-const SERVER_TS = readFileSync(join(PACKAGE_ROOT, "health-server.ts"), "utf8").replace(
+const SERVER_TS = readHealthServerTemplate().replace(
   "export function createHealthServer",
   "function createHealthServer",
 ) + `
