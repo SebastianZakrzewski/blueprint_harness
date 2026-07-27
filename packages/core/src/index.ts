@@ -86,3 +86,24 @@ export {
   type Checkpoint,
   type CheckpointEvidence,
 } from "./checkpoint.js";
+
+export {
+  FINDING_INGEST_CONFLICT,
+  FINDING_INGEST_DUPLICATE,
+  FINDING_INGEST_MANIFEST_PROPOSED,
+  FINDING_INGEST_MAPPING_PROPOSED,
+  HUMAN_JUDGMENT_REQUIRED,
+  detectDuplicateContent,
+  ingestDocs,
+  isCanonicalDocsLayout,
+  inventoryDocs,
+  inventoryDocsSync,
+  proposeManifest,
+  proposeMappings,
+  readManifest,
+  validateIngestionResult,
+  type DocsIngestionResult,
+  type DocsManifestEntry,
+  type InventoryEntry,
+  type ProposedMapping,
+} from "./docs-ingestion/index.js";
