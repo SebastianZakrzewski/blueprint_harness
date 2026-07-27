@@ -155,3 +155,19 @@ export {
   type ReleaseManifest,
   type ReleaseState,
 } from "./release/index.js";
+
+export {
+  applyMonitoringUnavailableFreeze,
+  freezeAutonomy,
+  getMonitoringState,
+  getMonitoringStatus,
+  getRolloutControlState,
+  isProductionAutonomyBlocked,
+  pauseRollout,
+  resetMonitoringStatus,
+  resetRolloutControl,
+  setMonitoringStatus,
+  verifyRecoveryAfterRollback,
+  type MonitoringStatus,
+  type RolloutControlState,
+} from "./recovery/index.js";
