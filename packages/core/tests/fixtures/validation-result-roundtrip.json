@@ -2,14 +2,14 @@
   "ok": false,
   "findings": [
     {
-      "id": "DOC-001",
+      "id": "EXEC-001",
       "severity": "error",
       "path": "docs/PLANS.md",
-      "message": "Missing required heading: Surprises & Discoveries",
-      "remediation": "Add the Surprises & Discoveries section per docs/PLANS.md"
+      "message": "Missing required top-level heading: Surprises & Discoveries",
+      "remediation": "Add a ## Surprises & Discoveries section per docs/PLANS.md"
     },
     {
-      "id": "DOC-001",
+      "id": "STATUS-003",
       "severity": "warning",
       "path": "docs/exec-plans/active/example.md",
       "message": "ExecPlan status header is missing"
