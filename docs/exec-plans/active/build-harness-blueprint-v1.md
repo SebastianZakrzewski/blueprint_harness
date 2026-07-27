@@ -52,7 +52,7 @@ Last updated: 2026-07-28 (M2 complete)
 | M4 Cursor adapter | 1+ small PRs | `[x]` complete | `.cursor` surfaces in template render; 10/10 tests |
 | M5 Profile SDK | 1+ small PRs | `[x]` complete | StackProfile contract; 6/6 tests; [PR #8](https://github.com/SebastianZakrzewski/blueprint_harness/pull/8) |
 | M6 CLI foundation | 1+ small PRs | `[x]` complete | harness CLI validate-docs/inspect/check; 7/7 tests |
-| M7 Docs discovery, mapping, manifest | 1+ small PRs | `[ ]` remaining | |
+| M7 Docs discovery, mapping, manifest | 1+ small PRs | `[x]` complete | docs-ingestion module; 5/5 ingestion tests |
 | M8 Bootstrap init (HARNESS_INSTALLED) | 1+ small PRs | `[ ]` remaining | Self-apply at HARNESS_INSTALLED |
 | M9 TypeScript/Node profile + scaffold | 3 proposed internal PRs | `[ ]` remaining | See M9 PR boundaries |
 | M10 Worktree and isolated environment | 1+ small PRs | `[ ]` remaining | |
