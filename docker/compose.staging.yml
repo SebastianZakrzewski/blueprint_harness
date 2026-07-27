@@ -1,0 +1,6 @@
+# Staging compose stack for release exercise (OD-002).
+services:
+  app:
+    image: nginx:1.27-alpine
+    ports:
+      - "${STAGING_PORT:-8080}:80"

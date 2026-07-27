@@ -140,3 +140,18 @@ export {
   type MergeReadinessReport,
   type MergeReadinessStatus,
 } from "./merge-readiness.js";
+
+export {
+  computeArtifactChecksum,
+  createReleaseArtifact,
+  deployStagingArtifact,
+  getReleaseState,
+  loadReleaseManifest,
+  readArtifactContent,
+  rollbackStagingArtifact,
+  verifyArtifactBytes,
+  verifyStagingDeployment,
+  type ReleaseArtifact,
+  type ReleaseManifest,
+  type ReleaseState,
+} from "./release/index.js";
