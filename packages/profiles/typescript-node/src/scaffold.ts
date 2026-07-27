@@ -5,10 +5,14 @@ import { buildValidationResult, type Finding } from "@blueprint-harness/core";
 import type { CapabilityResolutionProposal } from "@blueprint-harness/profile-sdk";
 
 import { scaffoldBase } from "./capabilities/base.js";
+import { scaffoldDatabase } from "./capabilities/database.js";
+import { scaffoldNestjs } from "./capabilities/nestjs.js";
 
 /** Capability scaffold handlers keyed by capability id. */
 const CAPABILITY_SCAFFOLDERS: Record<string, (projectRoot: string) => string[]> = {
   base: scaffoldBase,
+  nestjs: scaffoldNestjs,
+  database: scaffoldDatabase,
 };
 
 /**
