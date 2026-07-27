@@ -17,5 +17,6 @@ export {
 } from "./manifest.js";
 
 export { applyTemplateContext, renderTemplate, renderToTemp } from "./render.js";
+export { renderCursorAdapter } from "./cursor-render.js";
 
 export type { ManifestEntry, TemplateRenderContext } from "./types.js";
