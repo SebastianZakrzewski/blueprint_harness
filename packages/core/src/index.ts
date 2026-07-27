@@ -184,3 +184,14 @@ export {
   type AutonomyStatusReport,
   type PermissionAction,
 } from "./autonomy/index.js";
+
+export {
+  classifyUpgradeOwnership,
+  compareHarnessLocks,
+  readHarnessLock,
+  runUpgrade,
+  type HarnessLock,
+  type RunUpgradeOptions,
+  type UpgradeDiff,
+  type UpgradeReport,
+} from "./upgrade/index.js";
