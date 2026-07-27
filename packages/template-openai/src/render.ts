@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import { getKnowledgeLayoutManifest, KNOWLEDGE_LAYOUT_ENTRIES } from "./manifest.js";
 import { CURSOR_ADAPTER_ENTRIES } from "./cursor-adapter.js";
+import { GITHUB_CI_ENTRIES } from "./github-ci.js";
 import type { TemplateRenderContext } from "./types.js";
 
 const PACKAGE_ROOT = join(fileURLToPath(import.meta.url), "..", "..");
@@ -37,7 +38,11 @@ export function renderTemplate(targetDir: string, context: TemplateRenderContext
   const root = resolve(targetDir);
   const created: string[] = [];
 
-  for (const entry of [...getKnowledgeLayoutManifest(), ...CURSOR_ADAPTER_ENTRIES]) {
+  for (const entry of [
+    ...getKnowledgeLayoutManifest(),
+    ...CURSOR_ADAPTER_ENTRIES,
+    ...GITHUB_CI_ENTRIES,
+  ]) {
     const fullPath = join(root, entry.path);
 
     if (entry.kind === "directory") {

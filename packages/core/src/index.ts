@@ -126,3 +126,17 @@ export {
   provisionEnvironment,
   type WorktreeEnvironmentStatus,
 } from "./environment/index.js";
+
+export {
+  MAX_CONTROLLED_CI_RERUNS,
+  buildMergeReadinessReport,
+  classifyCiFailure,
+  evaluateRerunPolicy,
+  parseMergeReadinessReport,
+  serializeMergeReadinessReport,
+  type CiFailureClassification,
+  type CiFailureContext,
+  type MergeReadinessInput,
+  type MergeReadinessReport,
+  type MergeReadinessStatus,
+} from "./merge-readiness.js";

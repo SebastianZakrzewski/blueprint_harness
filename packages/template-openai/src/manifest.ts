@@ -1,6 +1,7 @@
 import { createFileOwnershipMetadata, type FileOwnershipMetadata } from "@blueprint-harness/core";
 
 import { CURSOR_ADAPTER_ENTRIES } from "./cursor-adapter.js";
+import { GITHUB_CI_ENTRIES } from "./github-ci.js";
 import type { ManifestEntry } from "./types.js";
 
 /**
@@ -87,7 +88,7 @@ export const KNOWLEDGE_LAYOUT_PATHS: readonly string[] = KNOWLEDGE_LAYOUT_ENTRIE
  * @returns File ownership records for manifest file entries.
  */
 export function getFileOwnershipManifest(): FileOwnershipMetadata[] {
-  return [...KNOWLEDGE_LAYOUT_ENTRIES, ...CURSOR_ADAPTER_ENTRIES]
+  return [...KNOWLEDGE_LAYOUT_ENTRIES, ...CURSOR_ADAPTER_ENTRIES, ...GITHUB_CI_ENTRIES]
     .filter((entry) => entry.kind === "file")
     .map((entry) =>
       createFileOwnershipMetadata({
