@@ -50,8 +50,8 @@ Last updated: 2026-07-28 (M2 complete)
 | M2 Docs and ExecPlan validation | 1+ small PRs | `[x]` complete | `docs-validator`, `execplan-linter`, `validate-docs`; 37/37 tests; gate exit 0; [PR #4](https://github.com/SebastianZakrzewski/blueprint_harness/pull/4) |
 | M3 OpenAI Repository Template | 1+ small PRs | `[x]` complete | template renderer + manifest; 6/6 tests |
 | M4 Cursor adapter | 1+ small PRs | `[x]` complete | `.cursor` surfaces in template render; 10/10 tests |
-| M5 Profile SDK | 1+ small PRs | `[ ]` remaining | |
-| M6 CLI foundation | 1+ small PRs | `[ ]` remaining | Wraps M2 `validate-docs` |
+| M5 Profile SDK | 1+ small PRs | `[x]` complete | StackProfile contract; 6/6 tests; [PR #8](https://github.com/SebastianZakrzewski/blueprint_harness/pull/8) |
+| M6 CLI foundation | 1+ small PRs | `[x]` complete | harness CLI validate-docs/inspect/check; 7/7 tests |
 | M7 Docs discovery, mapping, manifest | 1+ small PRs | `[ ]` remaining | |
 | M8 Bootstrap init (HARNESS_INSTALLED) | 1+ small PRs | `[ ]` remaining | Self-apply at HARNESS_INSTALLED |
 | M9 TypeScript/Node profile + scaffold | 3 proposed internal PRs | `[ ]` remaining | See M9 PR boundaries |
