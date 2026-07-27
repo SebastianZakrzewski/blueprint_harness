@@ -1,0 +1,4 @@
+{
+  "profileId": "typescript-node",
+  "capabilities": ["base", "nestjs", "database", "supabase", "mastra"]
+}

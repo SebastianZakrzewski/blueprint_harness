@@ -20,6 +20,12 @@ export const DEFAULT_BASE_PROPOSAL: CapabilityResolutionProposal = {
   installOrder: ["base"],
 };
 
+/** Full reference stack proposal (OD-007 through mastra). */
+export const REFERENCE_STACK_PROPOSAL: CapabilityResolutionProposal = {
+  capabilities: ["base", "nestjs", "database", "supabase", "mastra"],
+  installOrder: ["base", "nestjs", "database", "supabase", "mastra"],
+};
+
 /**
  * Creates the typescript-node StackProfile implementation.
  *
