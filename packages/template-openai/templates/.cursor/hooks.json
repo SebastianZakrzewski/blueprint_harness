@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "pnpm exec harness check --fast",
+        "description": "Fast harness check after edits (requires M6 CLI)"
+      }
+    ]
+  }
+}

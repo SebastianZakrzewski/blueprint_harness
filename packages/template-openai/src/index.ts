@@ -5,6 +5,11 @@ export const packageIdentity = {
 } as const;
 
 export {
+  CURSOR_ADAPTER_ENTRIES,
+  CURSOR_SURFACE_PATHS,
+} from "./cursor-adapter.js";
+
+export {
   KNOWLEDGE_LAYOUT_ENTRIES,
   KNOWLEDGE_LAYOUT_PATHS,
   getFileOwnershipManifest,

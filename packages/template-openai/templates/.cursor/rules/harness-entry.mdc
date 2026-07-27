@@ -1,0 +1,6 @@
+---
+description: Route agents to repository sources of truth.
+globs: "**/*"
+---
+
+Read [AGENTS.md](../../AGENTS.md) first. Use [docs/product-specs/index.md](../../docs/product-specs/index.md) and [docs/design-docs/index.md](../../docs/design-docs/index.md) for routed documentation.

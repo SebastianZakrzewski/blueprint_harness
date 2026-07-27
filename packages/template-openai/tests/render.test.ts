@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import {
+  CURSOR_ADAPTER_ENTRIES,
   KNOWLEDGE_LAYOUT_ENTRIES,
   KNOWLEDGE_LAYOUT_PATHS,
   getFileOwnershipManifest,
@@ -50,7 +51,7 @@ describe("template-openai render", () => {
 
   it("assigns ownership metadata to every manifest file (M3-AC3)", () => {
     const ownership = getFileOwnershipManifest();
-    const filePaths = KNOWLEDGE_LAYOUT_ENTRIES
+    const filePaths = [...KNOWLEDGE_LAYOUT_ENTRIES, ...CURSOR_ADAPTER_ENTRIES]
       .filter((entry) => entry.kind === "file")
       .map((entry) => entry.path);
 
