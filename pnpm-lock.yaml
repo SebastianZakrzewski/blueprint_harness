@@ -26,6 +26,9 @@ importers:
       '@blueprint-harness/core':
         specifier: workspace:*
         version: link:../core
+      '@blueprint-harness/profiles-typescript-node':
+        specifier: workspace:*
+        version: link:../profiles/typescript-node
       '@blueprint-harness/template-openai':
         specifier: workspace:*
         version: link:../template-openai
