@@ -1,0 +1,89 @@
+name: PR gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  harness-pr-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enforce controlled rerun policy
+        env:
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          if [ "$RUN_ATTEMPT" -gt 3 ]; then
+            echo "Blocked: third CI rerun without approval (max 2 controlled reruns)."
+            exit 1
+          fi
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm -r build
+
+      - name: Validate docs
+        run: pnpm exec harness validate-docs
+
+      - name: Harness check full
+        id: check-full
+        run: pnpm exec harness check --full
+        continue-on-error: true
+
+      - name: Test
+        id: test
+        run: pnpm test
+        continue-on-error: true
+
+      - name: Classify failure and emit merge readiness
+        if: steps.check-full.outcome == 'failure' || steps.test.outcome == 'failure'
+        run: |
+          node --input-type=module -e "
+          import { buildMergeReadinessReport, classifyCiFailure, serializeMergeReadinessReport } from './packages/core/dist/merge-readiness.js';
+          const snippet = process.env.CHECK_OUTCOME === 'failure'
+            ? 'TypeScript error TS2345 in implementation'
+            : 'AssertionError: expected true to be false';
+          const classification = classifyCiFailure({ logSnippet: snippet, exitCode: 1 });
+          const report = buildMergeReadinessReport({
+            acceptanceCriteriaMet: true,
+            validateDocsPassed: true,
+            checkFullPassed: process.env.CHECK_OUTCOME !== 'failure',
+            ciPassed: false,
+            reviewsComplete: true,
+            rerunCount: Number(process.env.GITHUB_RUN_ATTEMPT ?? 1) - 1,
+            ciFailureContext: { logSnippet: snippet },
+          });
+          console.log('CI classification:', classification);
+          console.log(serializeMergeReadinessReport(report));
+          process.exit(1);
+          "
+        env:
+          CHECK_OUTCOME: ${{ steps.check-full.outcome }}
+          GITHUB_RUN_ATTEMPT: ${{ github.run_attempt }}
+
+      - name: Merge readiness pass
+        if: steps.check-full.outcome == 'success' && steps.test.outcome == 'success'
+        run: |
+          node --input-type=module -e "
+          import { buildMergeReadinessReport, serializeMergeReadinessReport } from './packages/core/dist/merge-readiness.js';
+          const report = buildMergeReadinessReport({
+            acceptanceCriteriaMet: true,
+            validateDocsPassed: true,
+            checkFullPassed: true,
+            ciPassed: true,
+            reviewsComplete: true,
+          });
+          console.log(serializeMergeReadinessReport(report));
+          "

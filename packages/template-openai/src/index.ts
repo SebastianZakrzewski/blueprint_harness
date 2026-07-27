@@ -10,6 +10,11 @@ export {
 } from "./cursor-adapter.js";
 
 export {
+  GITHUB_CI_ENTRIES,
+  GITHUB_CI_PATHS,
+} from "./github-ci.js";
+
+export {
   KNOWLEDGE_LAYOUT_ENTRIES,
   KNOWLEDGE_LAYOUT_PATHS,
   getFileOwnershipManifest,
