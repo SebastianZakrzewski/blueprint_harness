@@ -3,7 +3,7 @@
 Status: PROPOSED
 Implementation: NOT_IMPLEMENTED
 Verification: NOT_VERIFIED
-Parent ExecPlan: `../exec-plans/active/build-harness-platform-v1.1.md`
+Parent ExecPlan: `../exec-plans/completed/build-harness-platform-v1.1.md`
 Implementation gate: `PLATFORM_QUERY_API_READY: PASS`
 
 ## Context

@@ -1,0 +1,17 @@
+{
+  "name": "@blueprint-harness/control-panel",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@blueprint-harness/platform-client": "workspace:*"
+  },
+  "devDependencies": {
+    "@blueprint-harness/platform-api": "workspace:*",
+    "@blueprint-harness/platform-contracts": "workspace:*"
+  }
+}

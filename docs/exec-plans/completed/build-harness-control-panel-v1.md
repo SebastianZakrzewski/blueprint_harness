@@ -6,7 +6,7 @@ Created: 2026-07-25
 Superseded: 2026-07-25
 Implementation started: false
 Implementation completed: false
-Superseded by: `../active/build-harness-platform-v1.1.md`
+Superseded by: `../completed/build-harness-platform-v1.1.md`
 Decision: `../../adr/ADR-PLATFORM-004-unified-platform-panel-execplan.md`
 
 ## Purpose / Big Picture

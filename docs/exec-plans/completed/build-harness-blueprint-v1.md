@@ -584,7 +584,7 @@ HARNESS_BLUEPRINT_V1_GATE: PASS
 ```
 
 Platform and Control Panel share one active follow-on ExecPlan:
-`docs/exec-plans/active/build-harness-platform-v1.1.md`.
+`docs/exec-plans/completed/build-harness-platform-v1.1.md`.
 
 The plan may be documented while Blueprint V1 is in progress, but remains
 `BLOCKED` and may not start implementation until this plan emits

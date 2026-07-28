@@ -45,7 +45,7 @@ Product and design:
 Delivery uses one plan:
 
 ```text
-exec-plans/active/build-harness-platform-v1.1.md
+exec-plans/completed/build-harness-platform-v1.1.md
 ```
 
 The panel has no separate active ExecPlan. Its implementation is blocked until:

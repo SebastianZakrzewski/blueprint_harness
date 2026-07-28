@@ -14,7 +14,7 @@ Verification: NOT_VERIFIED
 
 Harness Control Panel V1 is a component Product Spec under the Platform V1.1
 release. Both are delivered through
-`../exec-plans/active/build-harness-platform-v1.1.md`; the panel does not have a
+`../exec-plans/completed/build-harness-platform-v1.1.md`; the panel does not have a
 separate active ExecPlan.
 
 Product Specs define required outcomes and acceptance. Technical mechanisms

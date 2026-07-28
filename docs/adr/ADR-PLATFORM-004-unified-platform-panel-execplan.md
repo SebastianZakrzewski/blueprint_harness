@@ -25,7 +25,7 @@ Control Panel: web UI consuming the API
 Deliver Harness Platform V1.1 and Control Panel V1 through one active ExecPlan:
 
 ```text
-docs/exec-plans/active/build-harness-platform-v1.1.md
+docs/exec-plans/completed/build-harness-platform-v1.1.md
 ```
 
 Preserve implementation order with an internal gate:

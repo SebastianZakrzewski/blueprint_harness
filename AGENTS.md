@@ -39,7 +39,7 @@ versioned sources of truth.
 | Platform V1.1 product behavior and combined release acceptance | `docs/product-specs/harness-platform-v1.1.md` |
 | Platform ingestion, state, verification, API, and operational design | `docs/design-docs/platform-architecture.md` and linked Platform Design Docs |
 | Control Panel behavior, API boundary, and Architecture Explorer | `docs/product-specs/harness-control-panel-v1.md` and linked panel Design Docs |
-| Unified Platform and Control Panel delivery | `docs/exec-plans/active/build-harness-platform-v1.1.md` |
+| Unified Platform and Control Panel delivery | `docs/exec-plans/completed/build-harness-platform-v1.1.md` |
 | Platform and panel architecture decisions | `docs/adr/index.md` |
 
 ## Task classification

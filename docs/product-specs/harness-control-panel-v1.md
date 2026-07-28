@@ -4,7 +4,7 @@ Status: PROPOSED
 Implementation: NOT_IMPLEMENTED
 Verification: NOT_VERIFIED
 Parent release: Harness Platform V1.1
-Delivery plan: `../exec-plans/active/build-harness-platform-v1.1.md`
+Delivery plan: `../exec-plans/completed/build-harness-platform-v1.1.md`
 Internal dependency: `PLATFORM_QUERY_API_READY: PASS`
 Supersedes: separate active Control Panel ExecPlan
 

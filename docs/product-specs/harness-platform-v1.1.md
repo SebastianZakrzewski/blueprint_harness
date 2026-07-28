@@ -4,7 +4,7 @@ Status: PROPOSED
 Implementation: NOT_IMPLEMENTED
 Verification: NOT_VERIFIED
 Target release: `1.1.0`
-Delivery plan: `../exec-plans/active/build-harness-platform-v1.1.md`
+Delivery plan: `../exec-plans/completed/build-harness-platform-v1.1.md`
 Includes: Platform Core, Read-only Query API, agent context, and Control Panel V1
 Depends on: Harness Blueprint V1 verified at one exact Git SHA
 Blocked by: `HARNESS_BLUEPRINT_V1_GATE: PASS`

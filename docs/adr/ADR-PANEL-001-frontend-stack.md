@@ -52,4 +52,4 @@ before panel milestones.
 ## References
 
 - `../design-docs/control-panel-architecture.md`
-- `../exec-plans/active/build-harness-platform-v1.1.md`
+- `../exec-plans/completed/build-harness-platform-v1.1.md`

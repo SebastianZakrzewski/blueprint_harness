@@ -1,6 +1,3 @@
-import { PLATFORM_CONTRACTS_VERSION } from "@blueprint-harness/platform-contracts";
-
-/** Read-only Query API client surface (HP1 scaffold). */
-export function clientContractVersion(): string {
-  return PLATFORM_CONTRACTS_VERSION;
-}
+export { clientContractVersion } from "./client-meta.js";
+export { PlatformClient } from "./client.js";
+export type { PlatformClientOptions, QueryResource } from "./client.js";

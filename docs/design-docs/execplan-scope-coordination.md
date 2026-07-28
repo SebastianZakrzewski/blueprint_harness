@@ -123,4 +123,4 @@ panel milestones are blocked until `PLATFORM_QUERY_API_READY: PASS`.
 
 - Criteria: `criteria-and-impact-model.md`
 - Unified plan ADR: `../adr/ADR-PLATFORM-004-unified-platform-panel-execplan.md`
-- ExecPlan: `../exec-plans/active/build-harness-platform-v1.1.md`
+- ExecPlan: `../exec-plans/completed/build-harness-platform-v1.1.md`

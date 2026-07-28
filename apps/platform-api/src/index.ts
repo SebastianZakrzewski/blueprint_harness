@@ -1,6 +1,9 @@
 import { supportedEnvelopeSchemaId } from "@blueprint-harness/platform-domain";
 
-/** Query API application entry (HP1 health scaffold). */
+export { QueryApiServer } from "./query-api.js";
+export type { QueryApiOptions, QueryResource } from "./query-api.js";
+
+/** Query API application entry. */
 export function healthStatus(): { ok: true; schemaId: string } {
   return { ok: true, schemaId: supportedEnvelopeSchemaId() };
 }

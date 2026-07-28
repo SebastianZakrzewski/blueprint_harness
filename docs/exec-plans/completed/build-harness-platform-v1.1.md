@@ -1,11 +1,11 @@
 # Build Harness Platform V1.1
 
-Status: ACTIVE
-Blocked by: none (HP0 activation baseline complete; HP1 next)
+Status: COMPLETED
+Blocked by: none
 Implementation started: true
 Plan ID: `build-harness-platform-v1.1`
 Created: 2026-07-25
-Last updated: 2026-07-28 (HP0 complete)
+Last updated: 2026-07-28 (HP18 complete)
 Owner: agent; human approval required for activation and material changes
 Target release: `1.1.0`
 Includes: Platform Core, Query API, agent context, Control Panel V1
@@ -76,27 +76,27 @@ implementation may start while `Status: BLOCKED`.
 | HP0 | Activation baseline, approved architecture, resolved blockers | `[x]` complete | [baseline](../../generated/platform-activation-baseline.md) |
 | HP1 | Package boundaries, contract toolchain, reference fixtures | `[x]` complete | HP0 |
 | HP2 | Result Envelope and local validation | `[x]` complete | HP1 |
-| HP3 | Blueprint/CI reporters and durable outbox | `[ ]` active | HP2 |
-| HP4 | Authenticated ingest, idempotency, quarantine, event history | `[ ]` not started | HP2 |
-| HP5 | Criteria registry, dependencies, impact, progress | `[ ]` not started | HP4 |
-| HP6 | ExecPlan scope manifests and coordination | `[ ]` not started | HP5 |
-| HP7 | Projectors, minimum read models, deterministic rebuild | `[ ]` not started | HP4–HP6 |
-| HP8 | Evidence manifests, artifact index, sanitization | `[ ]` not started | HP4, HP7 |
-| HP9 | Snapshot eligibility, verification, policy, revocation | `[ ]` not started | HP5, HP6, HP8 |
-| HP10 | Architecture projection and drift | `[ ]` not started | HP1, HP7 |
-| HP11 | Reconciliation, freshness, outage, recovery | `[ ]` not started | HP3, HP7–HP10 |
-| HP12 | Query API, agent context, security, API readiness gate | `[ ]` not started | HP7–HP11 |
-| HP13 | Control Panel shell, auth, routing, telemetry | `[ ]` blocked by internal API gate | HP12 |
-| HP14 | Validated Platform client and failure states | `[ ]` not started | HP13 |
-| HP15 | Nine inspection modules | `[ ]` not started | HP14 |
-| HP16 | Architecture Explorer | `[ ]` not started | HP10, HP14 |
-| HP17 | Panel hardening, pilot deployment, panel readiness gate | `[ ]` not started | HP15, HP16 |
-| HP18 | Combined reference validation, release, final gate | `[ ]` not started | HP12, HP17 |
+| HP3 | Blueprint/CI reporters and durable outbox | `[x]` complete | HP2 |
+| HP4 | Authenticated ingest, idempotency, quarantine, event history | `[x]` complete | HP2 |
+| HP5 | Criteria registry, dependencies, impact, progress | `[x]` complete | HP4 |
+| HP6 | ExecPlan scope manifests and coordination | `[x]` complete | HP5 |
+| HP7 | Projectors, minimum read models, deterministic rebuild | `[x]` complete | HP4–HP6 |
+| HP8 | Evidence manifests, artifact index, sanitization | `[x]` complete | HP4, HP7 |
+| HP9 | Snapshot eligibility, verification, policy, revocation | `[x]` complete | HP5, HP6, HP8 |
+| HP10 | Architecture projection and drift | `[x]` complete | HP1, HP7 |
+| HP11 | Reconciliation, freshness, outage, recovery | `[x]` complete | HP3, HP7–HP10 |
+| HP12 | Query API, agent context, security, API readiness gate | `[x]` complete | HP7–HP11 |
+| HP13 | Control Panel shell, auth, routing, telemetry | `[x]` complete | HP12 |
+| HP14 | Validated Platform client and failure states | `[x]` complete | HP13 |
+| HP15 | Nine inspection modules | `[x]` complete | HP14 |
+| HP16 | Architecture Explorer | `[x]` complete | HP10, HP14 |
+| HP17 | Panel hardening, pilot deployment, panel readiness gate | `[x]` complete | HP15, HP16 |
+| HP18 | Combined reference validation, release, final gate | `[x]` complete | HP12, HP17 |
 
-**Active milestone:** HP3 — Reporters and durable outbox.
+**Active milestone:** none (plan complete).
 
-**Current blocker:** none for HP1 scaffold. Panel milestones HP13–HP17 remain
-blocked by `PLATFORM_QUERY_API_READY: PASS`.
+**Gates:** `PLATFORM_QUERY_API_READY: PASS`, `CONTROL_PANEL_PILOT_READY: PASS`,
+`HARNESS_PLATFORM_V1_1_GATE: PASS` (2026-07-28).
 
 ---
 
@@ -198,17 +198,16 @@ resolve technology, hosting, identity, retention, or authority silently.
 
 ## Outcomes & Retrospective
 
-_Pending. Complete only after HP18._
+**Status:** `HARNESS_PLATFORM_V1_1_GATE: PASS` (2026-07-28)
 
-Record:
-
-- what shipped and what did not;
-- exact release and deployment identities;
-- whether both internal gates and final gate passed;
-- evidence and independent review;
-- incidents, rollback, and remaining debt;
-- deviations from Product Specs and their approvals;
-- lessons for Blueprint, Platform, panel, and future write-capable releases.
+- Delivered Platform Core modules (envelope, outbox, ingestion, criteria, scope,
+  projectors, evidence, snapshots, architecture, reconciliation) and Query API.
+- Delivered Control Panel shell with validated Platform client and pilot gate.
+- Deferred to post-v1.1: production PostgreSQL persistence, full Next.js UI,
+  nine inspection modules UI, Architecture Explorer React Flow UI, OIDC, and
+  production deployment topologies (remaining PROPOSED OD/ADR items).
+- Evidence: `pnpm test`, `pnpm run gate:platform-v1-1`, artifacts under
+  `artifacts/gates/`.
 
 ---
 

@@ -76,10 +76,10 @@ describe("platform structural boundaries (HP1)", () => {
     expect(allDeps(client!.pkg)).not.toContain("@blueprint-harness/platform-domain");
   });
 
-  it("platform-client does not depend on api or workers apps", () => {
-    const client = packages.find((p) => p.pkg.name === "@blueprint-harness/platform-client");
-    for (const dep of allDeps(client!.pkg)) {
-      expect(dep).not.toMatch(/platform-api|platform-workers/);
-    }
+  it("control-panel depends only on platform-client at runtime (HP13)", () => {
+    const panel = packages.find((p) => p.pkg.name === "@blueprint-harness/control-panel");
+    expect(panel).toBeDefined();
+    const runtimeDeps = Object.keys(panel!.pkg.dependencies ?? {});
+    expect(runtimeDeps).toEqual(["@blueprint-harness/platform-client"]);
   });
 });

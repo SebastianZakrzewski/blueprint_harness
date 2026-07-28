@@ -186,7 +186,7 @@ The Control Panel may not query Platform storage or mutate project truth.
 
 Normative Platform boundaries live in
 `docs/design-docs/platform-architecture.md`. Delivery is governed by the single
-`docs/exec-plans/active/build-harness-platform-v1.1.md`.
+`docs/exec-plans/completed/build-harness-platform-v1.1.md`.
 
 ## Provenance
 
