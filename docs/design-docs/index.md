@@ -15,10 +15,24 @@ Read only the documents relevant to the active task.
 | [Worktree and observability](worktree-and-observability.md) | Isolated runtime, application control, and local telemetry | APPROVED | NOT_VERIFIED |
 | [Release and autonomy](release-and-autonomy.md) | CI, artifacts, rollout, Sentry, permissions, and promotions | APPROVED | NOT_VERIFIED |
 | [Entropy and maintenance](entropy-and-maintenance.md) | Quality grading, gardening, and recurring cleanup | APPROVED | NOT_VERIFIED |
+| [Platform architecture](platform-architecture.md) | Platform components, boundaries, dependencies, and unified gates | PROPOSED | NOT_VERIFIED |
+| [Result Envelope and schema evolution](result-envelope-and-schema-evolution.md) | Producer identity, parsing, idempotency, and compatibility | PROPOSED | NOT_VERIFIED |
+| [Criteria and impact model](criteria-and-impact-model.md) | Criteria registry, dependencies, impact, and progress | PROPOSED | NOT_VERIFIED |
+| [ExecPlan scope coordination](execplan-scope-coordination.md) | Active-scope conflicts and coordination contracts | PROPOSED | NOT_VERIFIED |
+| [Event ingestion and projections](event-ingestion-and-projections.md) | Append-only history, quarantine, projectors, and rebuild | PROPOSED | NOT_VERIFIED |
+| [Snapshot verification](snapshot-verification.md) | VERIFIED eligibility, policy binding, and revocation | PROPOSED | NOT_VERIFIED |
+| [Evidence packages](evidence-packages.md) | Immutable manifests, artifacts, sanitization, and retention | PROPOSED | NOT_VERIFIED |
+| [Architecture projection](architecture-projection.md) | Exact-SHA graphs, bounds, determinism, and drift | PROPOSED | NOT_VERIFIED |
+| [Agent Platform integration](agent-platform-integration.md) | Router-preserving context and result publication | PROPOSED | NOT_VERIFIED |
+| [Platform security and reliability](platform-security-reliability-and-retention.md) | Identity, isolation, audit, outage, telemetry, and retention | PROPOSED | NOT_VERIFIED |
+| [Control Panel architecture](control-panel-architecture.md) | Frontend boundaries, state, auth, failure, and validation | PROPOSED | NOT_VERIFIED |
+| [Control Panel data contracts](control-panel-data-contracts.md) | Parsed Query API resources and projection contract | PROPOSED | NOT_VERIFIED |
+| [Architecture Explorer UI](architecture-explorer-ui.md) | React Flow, ELK.js, comparison, accessibility, and bounds | PROPOSED | NOT_VERIFIED |
 
 ## Status vocabulary
 
-- `DRAFT`: not yet an approved source of intent.
+- `PROPOSED`: reviewable future intent; not binding for implementation.
+- `DRAFT`: incomplete and not approved.
 - `APPROVED`: normative and binding until superseded.
 - `SUPERSEDED`: retained for history and linked to its successor.
 

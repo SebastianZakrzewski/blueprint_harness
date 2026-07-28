@@ -1,6 +1,6 @@
 # Build Harness Blueprint V1
 
-Status: ACTIVE  
+Status: COMPLETED  
 Plan ID: build-harness-blueprint-v1  
 Created: 2026-07-21  
 Owner: agent (human approval required for material changes)  
@@ -567,6 +567,30 @@ Profiles may not redefine Core semantics.
 6. This plan's Outcomes & Retrospective completed.
 7. Plan moved to `docs/exec-plans/completed/build-harness-blueprint-v1.md`.
 8. Human approval for V1 release tag (A0 autonomy default).
+
+---
+
+## Follow-on releases
+
+The following proposed release is outside M0–M16 and does not change the scope
+or acceptance of Harness Blueprint V1:
+
+```text
+HARNESS_BLUEPRINT_V1_GATE: PASS
+→ Harness Platform V1.1 unified ExecPlan
+   → Platform Core and stable Read-only Query API
+   → Control Panel V1
+→ HARNESS_PLATFORM_V1_1_GATE: PASS
+```
+
+Platform and Control Panel share one active follow-on ExecPlan:
+`docs/exec-plans/active/build-harness-platform-v1.1.md`.
+
+The plan may be documented while Blueprint V1 is in progress, but remains
+`BLOCKED` and may not start implementation until this plan emits
+`HARNESS_BLUEPRINT_V1_GATE: PASS` for one exact SHA. Panel milestones inside the
+unified plan have an additional internal dependency on
+`PLATFORM_QUERY_API_READY: PASS`.
 
 ---
 
