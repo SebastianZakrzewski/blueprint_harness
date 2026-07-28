@@ -46,19 +46,18 @@ flowchart TD
 
 ## Proposed package boundaries
 
-Physical paths are finalized at `HP0` after inspecting the verified Blueprint
-repository. The logical ownership is normative:
+Physical paths finalized at HP0 (2026-07-28); scaffold at HP1:
 
 ```text
-packages/
-  platform-contracts/
-  platform-domain/
-  platform-client/
-apps/
-  platform-api/
-  platform-workers/
-  control-panel/
+packages/platform-contracts/     @blueprint-harness/platform-contracts
+packages/platform-domain/          @blueprint-harness/platform-domain
+packages/platform-client/          @blueprint-harness/platform-client
+apps/platform-api/                 @blueprint-harness/platform-api
+apps/platform-workers/             @blueprint-harness/platform-workers
+apps/control-panel/                @blueprint-harness/control-panel
 ```
+
+Record of truth: `docs/generated/platform-activation-baseline.md`.
 
 A modular-monolith deployment may combine `platform-api` and workers in one
 runtime if approved. Logical boundaries remain:

@@ -1,11 +1,11 @@
 # Build Harness Platform V1.1
 
-Status: BLOCKED
-Blocked by: HP0 activation baseline incomplete; human activation approval pending
+Status: ACTIVE
+Blocked by: none (HP0 activation baseline complete; HP1 next)
 Implementation started: false
 Plan ID: `build-harness-platform-v1.1`
 Created: 2026-07-25
-Last updated: 2026-07-25
+Last updated: 2026-07-28 (HP0 complete)
 Owner: agent; human approval required for activation and material changes
 Target release: `1.1.0`
 Includes: Platform Core, Query API, agent context, Control Panel V1
@@ -73,8 +73,8 @@ implementation may start while `Status: BLOCKED`.
 | Milestone | Outcome | Status | Depends on |
 | --- | --- | --- | --- |
 | Documentation integration | Product Specs, Design Docs, ADRs, indexes, unified plan | `[x]` complete | merged in docs/platform-v1.1-integration |
-| HP0 | Activation baseline, approved architecture, resolved blockers | `[ ]` blocked | HP0 activation baseline + human approval |
-| HP1 | Package boundaries, contract toolchain, reference fixtures | `[ ]` not started | HP0 |
+| HP0 | Activation baseline, approved architecture, resolved blockers | `[x]` complete | [baseline](../../generated/platform-activation-baseline.md) |
+| HP1 | Package boundaries, contract toolchain, reference fixtures | `[ ]` active | HP0 |
 | HP2 | Result Envelope and local validation | `[ ]` not started | HP1 |
 | HP3 | Blueprint/CI reporters and durable outbox | `[ ]` not started | HP2 |
 | HP4 | Authenticated ingest, idempotency, quarantine, event history | `[ ]` not started | HP2 |
@@ -93,18 +93,10 @@ implementation may start while `Status: BLOCKED`.
 | HP17 | Panel hardening, pilot deployment, panel readiness gate | `[ ]` not started | HP15, HP16 |
 | HP18 | Combined reference validation, release, final gate | `[ ]` not started | HP12, HP17 |
 
-**Active milestone:** none.
+**Active milestone:** HP1 — Platform foundation.
 
-**Current blocker:** HP0 activation baseline is incomplete. Blueprint V1 gate
-passed at `49f8c56` (see completed Blueprint ExecPlan); Platform remains
-`BLOCKED` until activation fields, activation-blocking ODs, and human approval
-(HP0-AC7) are recorded.
-
-Panel milestones HP13–HP17 have an additional internal blocker:
-
-```text
-PLATFORM_QUERY_API_READY: PASS
-```
+**Current blocker:** none for HP1 scaffold. Panel milestones HP13–HP17 remain
+blocked by `PLATFORM_QUERY_API_READY: PASS`.
 
 ---
 
@@ -115,7 +107,7 @@ PLATFORM_QUERY_API_READY: PASS
 | 2026-07-25 | Platform and panel were initially separate plans | Previous active plan documents | Consolidated under ADR-PLATFORM-004 |
 | 2026-07-25 | Blueprint M2 documentation validation was not yet available at design time | Current Blueprint progress | Revalidate this plan after Blueprint final gate |
 | 2026-07-25 | Panel requires stable API contracts but not a separate release baseline | Product and data-boundary review | Add `PLATFORM_QUERY_API_READY` inside this plan |
-| 2026-07-25 | Platform can appear complete with mock UI unless final evidence is combined | Acceptance review | `PLATFORM-AC-040` covers Platform and panel criteria |
+| 2026-07-28 | Blueprint V1 gate PASS at `49f8c56`; doc integration merged | `docs/generated/platform-activation-baseline.md` | HP0 activation recorded; plan ACTIVE |
 
 Append implementation discoveries here with exact source, consequence, and any
 required plan/Doc change.
@@ -132,28 +124,46 @@ required plan/Doc change.
 | PLATFORM-PLAN-004 | 2026-07-25 | PROPOSED | Use HP0–HP18 as independently verifiable milestone sequence | Activation review |
 | PLATFORM-PLAN-005 | 2026-07-25 | PROPOSED | Final gate covers all applicable Platform and panel criteria | Activation review |
 | PLATFORM-PLAN-006 | 2026-07-25 | PROPOSED | One pilot project validates Platform, agent context, and panel together | `PLATFORM-OD-011`, `PANEL-OD-004` |
+| PLATFORM-OD-012 | 2026-07-28 | **RESOLVED** | Blueprint verified SHA `49f8c56`; gate evidence in `scripts/gates/` | HP0 |
+| PLATFORM-OD-001 | 2026-07-28 | **RESOLVED** | Single-tenant per deployment; project-scoped isolation in data model | HP0 |
+| PLATFORM-OD-002 | 2026-07-28 | **RESOLVED** | Local/dev PostgreSQL via Docker Compose; append-only events + read models | HP0/HP1 |
+| PLATFORM-OD-004 | 2026-07-28 | **RESOLVED** | Scope manifest JSON at `.harness/execplan-scope.json`; Blueprint ExecPlan linter reused | HP6 |
+| PLATFORM-OD-003 | 2026-07-28 | **DEFERRED** | Target HP8 | HP8 |
+| PLATFORM-OD-005 | 2026-07-28 | **DEFERRED** | Target HP4 | HP4 |
+| PLATFORM-OD-006 | 2026-07-28 | **DEFERRED** | Target HP11 | HP11 |
+| PLATFORM-OD-007 | 2026-07-28 | **DEFERRED** | Target HP8/HP11 | HP8 |
+| PLATFORM-OD-008 | 2026-07-28 | **DEFERRED** | Target HP9 | HP9 |
+| PLATFORM-OD-009 | 2026-07-28 | **DEFERRED** | Target HP12 | HP12 |
+| PLATFORM-OD-010 | 2026-07-28 | **DEFERRED** | Target HP18 | HP18 |
+| PLATFORM-OD-011 | 2026-07-28 | **DEFERRED** | Target HP17 | HP17 |
+| PANEL-OD-001 | 2026-07-28 | **DEFERRED** | Target HP17 | HP17 |
+| PANEL-OD-002 | 2026-07-28 | **DEFERRED** | Target HP13 | HP13 |
+| PANEL-OD-003 | 2026-07-28 | **DEFERRED** | Target HP12/HP14 | HP12 |
+| PANEL-OD-004 | 2026-07-28 | **DEFERRED** | Target HP17 | HP17 |
+| PANEL-OD-005 | 2026-07-28 | **DEFERRED** | Target HP18 | HP18 |
+| HP0-ACTIVATION | 2026-07-28 | **RESOLVED** | Activation baseline recorded; plan ACTIVE; implementation not started | Project owner PR approval |
 
 ### Activation baseline
 
 Complete and approve before HP0 closes:
 
 ```text
-blueprintVersion:
-blueprintVerifiedSha:
-HARNESS_BLUEPRINT_V1_GATE evidence reference:
-policyVersion:
-schema compatibility baseline:
-verified repository structure reference:
-approved Platform Product Spec:
-approved Control Panel component Product Spec:
-approved Platform Design Docs:
-approved panel Design Docs:
-approved required ADRs:
-resolved activation-blocking PLATFORM-OD IDs:
-resolved activation-blocking PANEL-OD IDs:
-pilot project:
-activation reviewer:
-activation decision date:
+blueprintVersion: 1.0.0
+blueprintVerifiedSha: 49f8c560e9e86bdb08ca5ad21f6481cacf3473b8
+HARNESS_BLUEPRINT_V1_GATE evidence reference: scripts/gates/harness-blueprint-v1-gate.ts
+policyVersion: platform-policy-v1
+schema compatibility baseline: result-envelope@1 (HP2)
+verified repository structure reference: docs/generated/platform-activation-baseline.md
+approved Platform Product Spec: docs/product-specs/harness-platform-v1.1.md (PROPOSED)
+approved Control Panel component Product Spec: docs/product-specs/harness-control-panel-v1.md (PROPOSED)
+approved Platform Design Docs: docs/design-docs/index.md (PROPOSED rows)
+approved panel Design Docs: control-panel-*, architecture-explorer-ui (PROPOSED)
+approved required ADRs: ADR-PLATFORM-004 APPROVED; others PROPOSED per milestone
+resolved activation-blocking PLATFORM-OD IDs: OD-012, OD-001, OD-002, OD-004
+resolved activation-blocking PANEL-OD IDs: none at HP0 (all deferred with targets)
+pilot project: fixtures/reference-project (proposed; HP17 confirmation)
+activation reviewer: project owner
+activation decision date: 2026-07-28
 ```
 
 Empty or ambiguous required fields keep the plan BLOCKED.
@@ -415,20 +425,16 @@ Record versions, exit codes, bounded logs, and exact SHA.
 Package names are finalized at HP0:
 
 ```text
-pnpm --filter <platform-contracts> lint
-pnpm --filter <platform-contracts> typecheck
-pnpm --filter <platform-core> test
-pnpm --filter <platform-api> test
-pnpm --filter <platform-workers> test
-pnpm --filter <control-panel> lint
-pnpm --filter <control-panel> typecheck
-pnpm --filter <control-panel> test
-pnpm --filter <control-panel> build
-pnpm --filter <control-panel> exec playwright test
+pnpm --filter @blueprint-harness/platform-contracts test
+pnpm --filter @blueprint-harness/platform-domain test
+pnpm --filter @blueprint-harness/platform-client test
+pnpm --filter @blueprint-harness/platform-api test
+pnpm --filter @blueprint-harness/platform-workers test
+pnpm --filter @blueprint-harness/control-panel test
+pnpm --filter @blueprint-harness/control-panel build
 ```
 
-Placeholders must be replaced before implementation; do not run guessed package
-names.
+Packages scaffold at HP1; panel Playwright at HP13+.
 
 ### Gate commands
 
