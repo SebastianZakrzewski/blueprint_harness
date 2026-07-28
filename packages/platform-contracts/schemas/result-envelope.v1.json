@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harness.blueprint/schemas/result-envelope.v1.json",
+  "title": "HarnessResultEnvelopeV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "producerId",
+    "runId",
+    "repositoryId",
+    "commitSha",
+    "payloadHash"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "result-envelope@1" },
+    "producerId": { "type": "string", "minLength": 1 },
+    "runId": { "type": "string", "minLength": 1 },
+    "repositoryId": { "type": "string", "minLength": 1 },
+    "commitSha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "payloadHash": { "type": "string", "minLength": 1 }
+  }
+}
