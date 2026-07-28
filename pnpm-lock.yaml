@@ -24,6 +24,37 @@ importers:
         specifier: ^3.2.4
         version: 3.2.7(@types/node@22.20.1)
 
+  apps/control-panel:
+    dependencies:
+      '@blueprint-harness/platform-client':
+        specifier: workspace:*
+        version: link:../../packages/platform-client
+    devDependencies:
+      '@blueprint-harness/platform-api':
+        specifier: workspace:*
+        version: link:../platform-api
+      '@blueprint-harness/platform-contracts':
+        specifier: workspace:*
+        version: link:../../packages/platform-contracts
+
+  apps/platform-api:
+    dependencies:
+      '@blueprint-harness/platform-contracts':
+        specifier: workspace:*
+        version: link:../../packages/platform-contracts
+      '@blueprint-harness/platform-domain':
+        specifier: workspace:*
+        version: link:../../packages/platform-domain
+
+  apps/platform-workers:
+    dependencies:
+      '@blueprint-harness/platform-contracts':
+        specifier: workspace:*
+        version: link:../../packages/platform-contracts
+      '@blueprint-harness/platform-domain':
+        specifier: workspace:*
+        version: link:../../packages/platform-domain
+
   packages/cli:
     dependencies:
       '@blueprint-harness/core':
@@ -40,6 +71,20 @@ importers:
         version: 13.1.0
 
   packages/core: {}
+
+  packages/platform-client:
+    dependencies:
+      '@blueprint-harness/platform-contracts':
+        specifier: workspace:*
+        version: link:../platform-contracts
+
+  packages/platform-contracts: {}
+
+  packages/platform-domain:
+    dependencies:
+      '@blueprint-harness/platform-contracts':
+        specifier: workspace:*
+        version: link:../platform-contracts
 
   packages/profile-sdk:
     dependencies:

@@ -158,6 +158,36 @@ single PR containing documentation, implementation, lint or structural checks,
 fixtures, and migration guidance. An agent may not weaken an invariant merely
 to make a local change pass.
 
+## Follow-on Harness Platform V1.1
+
+Harness Platform V1.1 is a follow-on product implemented only after
+`HARNESS_BLUEPRINT_V1_GATE: PASS`. It aggregates versioned Harness results into
+append-only history and rebuildable read models, exposes a read-only Query API,
+and includes a first-party Control Panel application.
+
+```mermaid
+flowchart TD
+    Blueprint["Harness Blueprint 1.0.0"] --> Producers["CLI, CI, validators"]
+    Producers --> Platform["Platform Core"]
+    Platform --> API["Read-only Query API"]
+    API --> Panel["Control Panel"]
+    API --> Agent["Bounded agent context"]
+```
+
+Dependency direction is one way:
+
+```text
+Control Panel → Query API → Platform Core → accepted producer contracts
+```
+
+The Platform may depend on stable Blueprint contracts. Blueprint CLI, routing,
+worktrees, checks, CI, and local evidence may not require Platform availability.
+The Control Panel may not query Platform storage or mutate project truth.
+
+Normative Platform boundaries live in
+`docs/design-docs/platform-architecture.md`. Delivery is governed by the single
+`docs/exec-plans/completed/build-harness-platform-v1.1.md`.
+
 ## Provenance
 
 - OPENAI-CONFIRMED: repository-local knowledge, short `AGENTS.md`, fixed domain

@@ -36,6 +36,11 @@ versioned sources of truth.
 | Quality and autonomy readiness | `docs/QUALITY_SCORE.md` |
 | Generated database representation | `docs/generated/db-schema.md` |
 | External technical references | `docs/references/` |
+| Platform V1.1 product behavior and combined release acceptance | `docs/product-specs/harness-platform-v1.1.md` |
+| Platform ingestion, state, verification, API, and operational design | `docs/design-docs/platform-architecture.md` and linked Platform Design Docs |
+| Control Panel behavior, API boundary, and Architecture Explorer | `docs/product-specs/harness-control-panel-v1.md` and linked panel Design Docs |
+| Unified Platform and Control Panel delivery | `docs/exec-plans/completed/build-harness-platform-v1.1.md` |
+| Platform and panel architecture decisions | `docs/adr/index.md` |
 
 ## Task classification
 
@@ -47,6 +52,11 @@ agents.
 
 An ExecPlan must comply with `docs/PLANS.md` and live in
 `docs/exec-plans/active/` until its complete outcome is verified.
+
+Work affecting Harness Platform V1.1 or Control Panel V1 is governed by the
+single unified Platform ExecPlan. The panel must not create a second active
+delivery plan. Panel milestones remain blocked until the plan records
+`PLATFORM_QUERY_API_READY: PASS`.
 
 ## Required task loop
 

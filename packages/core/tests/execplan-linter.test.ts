@@ -18,11 +18,11 @@ describe("execplan-linter", () => {
   it("passes canonical ExecPlan with all 12 required headings", () => {
     const execPlanPath = join(
       REPO_ROOT,
-      "docs/exec-plans/active/build-harness-blueprint-v1.md",
+      "docs/exec-plans/completed/build-harness-blueprint-v1.md",
     );
     const content = readFileSync(execPlanPath, "utf8");
     const findings = lintExecPlanFile(
-      "docs/exec-plans/active/build-harness-blueprint-v1.md",
+      "docs/exec-plans/completed/build-harness-blueprint-v1.md",
       content,
     );
 
