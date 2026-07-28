@@ -75,8 +75,8 @@ implementation may start while `Status: BLOCKED`.
 | Documentation integration | Product Specs, Design Docs, ADRs, indexes, unified plan | `[x]` complete | merged in docs/platform-v1.1-integration |
 | HP0 | Activation baseline, approved architecture, resolved blockers | `[x]` complete | [baseline](../../generated/platform-activation-baseline.md) |
 | HP1 | Package boundaries, contract toolchain, reference fixtures | `[x]` complete | HP0 |
-| HP2 | Result Envelope and local validation | `[ ]` active | HP1 |
-| HP3 | Blueprint/CI reporters and durable outbox | `[ ]` not started | HP2 |
+| HP2 | Result Envelope and local validation | `[x]` complete | HP1 |
+| HP3 | Blueprint/CI reporters and durable outbox | `[ ]` active | HP2 |
 | HP4 | Authenticated ingest, idempotency, quarantine, event history | `[ ]` not started | HP2 |
 | HP5 | Criteria registry, dependencies, impact, progress | `[ ]` not started | HP4 |
 | HP6 | ExecPlan scope manifests and coordination | `[ ]` not started | HP5 |
@@ -93,7 +93,7 @@ implementation may start while `Status: BLOCKED`.
 | HP17 | Panel hardening, pilot deployment, panel readiness gate | `[ ]` not started | HP15, HP16 |
 | HP18 | Combined reference validation, release, final gate | `[ ]` not started | HP12, HP17 |
 
-**Active milestone:** HP2 — Result Envelope.
+**Active milestone:** HP3 — Reporters and durable outbox.
 
 **Current blocker:** none for HP1 scaffold. Panel milestones HP13–HP17 remain
 blocked by `PLATFORM_QUERY_API_READY: PASS`.
